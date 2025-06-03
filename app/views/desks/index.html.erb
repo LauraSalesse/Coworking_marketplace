@@ -41,22 +41,24 @@
       <div class="row row-cols-1 row-cols-md-3 g-4">
         <% @desks.each do |desk| %>
           <div class="col">
-            <div class="card h-100">
-              <% if desk.photos.attached? %>
-                    <%= image_tag desk.photos.first, class: "card-img-top", alt: desk.title %>
-                    <% else %>
-                    <%= image_tag "https://via.placeholder.com/400x250?text=Workspace", class: "card-img-top", alt: desk.title %>
-                  <% end %>
+            <%= link_to desk_path(desk), class: "text-decoration-none text-reset" do %>
+              <div class="card h-100">
+                <% if desk.photos.attached? %>
+                      <%= image_tag desk.photos.first, class: "card-img-top", alt: desk.title %>
+                      <% else %>
+                      <%= image_tag "https://via.placeholder.com/400x250?text=Workspace", class: "card-img-top", alt: desk.title %>
+                    <% end %>
 
-              <div class="card-body">
-                <h5 class="card-title"><%= desk.title %></h5>
-                <p class="card-text">
-                  <strong>Price:</strong> $<%= desk.price %> / day<br>
-                  <strong>Location:</strong> <%= desk.location %><br>
-                  <strong>Description:</strong> <%= desk.description.truncate(60) %>
-                </p>
+                <div class="card-body">
+                  <h5 class="card-title"><%= desk.title %></h5>
+                  <p class="card-text">
+                    <strong>Price:</strong> $<%= desk.price %> / day<br>
+                    <strong>Location:</strong> <%= desk.location %><br>
+                    <strong>Description:</strong> <%= desk.description.truncate(60) %>
+                  </p>
+                </div>
               </div>
-            </div>
+            <% end %>
           </div>
         <% end %>
       </div>
