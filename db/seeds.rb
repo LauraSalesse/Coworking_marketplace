@@ -41,7 +41,7 @@ desk1 = Desk.create!(
 )
 desk1.photos.attach([
   {
-    io: URI.open("https://sdmntpritalynorth.oaiusercontent.com/files/00000000-a818-6246-93e8-253143fd5310/raw?se=2025-06-03T11%3A44%3A12Z&sp=r&sv=2024-08-04&sr=b&scid=8baaa1fc-78f0-598d-a6cf-4de3d2017216&skoid=0a4a0f0c-99ac-4752-9d87-cfac036fa93f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-06-03T09%3A21%3A59Z&ske=2025-06-04T09%3A21%3A59Z&sks=b&skv=2024-08-04&sig=pCC/s7CmFTLebU895JkftHACzBqh299YKA0pCsIXaos%3D"),
+    io: URI.open("https://cdn.midjourney.com/1c9d0758-92dd-415e-90ff-c540f86d2922/0_0.png"),
     filename: "desk1Tokyo.jpg",
     content_type: "image/jpeg"
   }
@@ -58,7 +58,7 @@ desk2 = Desk.create!(
 )
 desk2.photos.attach([
     {
-    io: URI.open("https://officesnapshots.com/wp-content/uploads/2019/11/pwc-experience-center-offices-paris-2.jpg"),
+    io: URI.open("https://cdn.midjourney.com/fb17dcde-1190-4300-804c-bd3c40fbbc24/0_3.png"),
     filename: "desk1Paris.jpg",
     content_type: "image/jpeg"
   }
@@ -76,12 +76,12 @@ desk3 = Desk.create!(
 )
 desk3.photos.attach([
    {
-    io: URI.open("https://sdmntpreastus2.oaiusercontent.com/files/00000000-1ae8-61f6-848a-d2a5af27422c/raw?se=2025-06-03T11%3A37%3A37Z&sp=r&sv=2024-08-04&sr=b&scid=ace78cb0-cf6e-577f-8d1e-ca882fe7e1d9&skoid=0a4a0f0c-99ac-4752-9d87-cfac036fa93f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-06-02T22%3A59%3A45Z&ske=2025-06-03T22%3A59%3A45Z&sks=b&skv=2024-08-04&sig=xmRZm6T54iddPbWL3p/i9o3ChEiNi7e8VhiWRsmi1FQ%3D"),
+    io: URI.open("https://cdn.midjourney.com/157bd89b-68f5-4e38-b316-b26e27ab9854/0_1.png"),
     filename: "desk1barn.jpg",
     content_type: "image/jpeg"
   },
      {
-    io: URI.open("https://www.vivaweek.com/media/cache/thumb_840x530/img/locvac-photos/542090/location-vacances-gite--542090-1.jpg?310320124217"),
+    io: URI.open("https://assets.hvmag.com/2023/05/LMGzByD0-BackyardBarn5.jpg"),
     filename: "desk2barn.jpg",
     content_type: "image/jpeg"
   }
