@@ -1,4 +1,6 @@
 class DesksController < ApplicationController
+  before_action :authenticate_user!, only: %i[new create]   # if you’re using Devise or similar
+
   def index
     @desks = Desk.all
   end
@@ -13,12 +15,11 @@ class DesksController < ApplicationController
   end
 
   def create
-    @desk = Desk.new(desk_params)
-    @desk.user = current_user #"Devise" gives us access to current_user automatically when someone is signed in
+    @desk = current_user.desks.build(desk_params)
     if @desk.save
-      redirect_to desks_path
+      redirect_to @desk, notice: "Your space has been listed successfully."
     else
-      render :new #if doesn't work, it just shows the form again
+      render :new, status: :unprocessable_entity
     end
   end
 
