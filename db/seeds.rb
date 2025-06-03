@@ -41,7 +41,7 @@ desk1 = Desk.create!(
 )
 desk1.photos.attach([
   {
-    io: URI.open("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR96KacIZ5hV6PkQ32_TG2-9Cx9N-nsgZSC7Q&s"),
+    io: URI.open("https://cdn.midjourney.com/1c9d0758-92dd-415e-90ff-c540f86d2922/0_0.png"),
     filename: "desk1Tokyo.jpg",
     content_type: "image/jpeg"
   }
@@ -58,7 +58,7 @@ desk2 = Desk.create!(
 )
 desk2.photos.attach([
     {
-    io: URI.open("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUECoQRRolLRDONfFV-weh4ByiZYyBIF7WVQ&s"),
+    io: URI.open("https://cdn.midjourney.com/fb17dcde-1190-4300-804c-bd3c40fbbc24/0_3.png"),
     filename: "desk1Paris.jpg",
     content_type: "image/jpeg"
   }
@@ -76,7 +76,7 @@ desk3 = Desk.create!(
 )
 desk3.photos.attach([
    {
-    io: URI.open("https://st.hzcdn.com/simgs/pictures/home-offices/calistoga-barn-paul-kelley-architecture-img~612120a305bfd7d1_4-5511-1-c05fdec.jpg"),
+    io: URI.open("https://cdn.midjourney.com/157bd89b-68f5-4e38-b316-b26e27ab9854/0_1.png"),
     filename: "desk1barn.jpg",
     content_type: "image/jpeg"
   },
