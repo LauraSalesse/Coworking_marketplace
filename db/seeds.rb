@@ -41,7 +41,7 @@ desk1 = Desk.create!(
 )
 desk1.photos.attach([
   {
-    io: URI.open("https://cdn.midjourney.com/1c9d0758-92dd-415e-90ff-c540f86d2922/0_0.png"),
+    io: URI.open("https://st.hzcdn.com/simgs/pictures/home-offices/calistoga-barn-paul-kelley-architecture-img~612120a305bfd7d1_4-5511-1-c05fdec.jpg"),
     filename: "desk1Tokyo.jpg",
     content_type: "image/jpeg"
   }
@@ -58,7 +58,7 @@ desk2 = Desk.create!(
 )
 desk2.photos.attach([
     {
-    io: URI.open("https://cdn.midjourney.com/fb17dcde-1190-4300-804c-bd3c40fbbc24/0_3.png"),
+    io: URI.open("https://st.hzcdn.com/simgs/pictures/home-offices/calistoga-barn-paul-kelley-architecture-img~612120a305bfd7d1_4-5511-1-c05fdec.jpg"),
     filename: "desk1Paris.jpg",
     content_type: "image/jpeg"
   }
@@ -76,12 +76,12 @@ desk3 = Desk.create!(
 )
 desk3.photos.attach([
    {
-    io: URI.open("https://cdn.midjourney.com/157bd89b-68f5-4e38-b316-b26e27ab9854/0_1.png"),
+    io: URI.open("https://st.hzcdn.com/simgs/pictures/home-offices/calistoga-barn-paul-kelley-architecture-img~612120a305bfd7d1_4-5511-1-c05fdec.jpg"),
     filename: "desk1barn.jpg",
     content_type: "image/jpeg"
   },
      {
-    io: URI.open("https://assets.hvmag.com/2023/05/LMGzByD0-BackyardBarn5.jpg"),
+    io: URI.open("https://st.hzcdn.com/simgs/pictures/home-offices/calistoga-barn-paul-kelley-architecture-img~612120a305bfd7d1_4-5511-1-c05fdec.jpg"),
     filename: "desk2barn.jpg",
     content_type: "image/jpeg"
   }
