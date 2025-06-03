@@ -10,4 +10,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   resources :desks, only: [:index, :new, :create]
+
+  # add the routes to mydesks Max
+  get 'mydesks', to: 'desks#mydesks'
 end
