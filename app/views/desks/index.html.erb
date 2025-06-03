@@ -79,25 +79,53 @@
 </head>
 <body>
 
+  <!-- NAVBAR: replace the static links with Rails helpers -->
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
-
-      <a class="navbar-brand" href="#">
+      <%= link_to root_path, class: "navbar-brand" do %>
         <img src="https://cdn.midjourney.com/d64d3314-c8f7-4783-adb4-372aecc8b739/0_1.png"
           alt="Desk Array Logo"
           style="height:60px; vertical-align:middle; margin-right:8px; border-radius:50%;"> Desk Array
-      </a>
+      <% end %>
 
-      <div class="collapse navbar-collapse justify-content-end">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">List Your Space</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Sign Up</a></li>
+          <!-- HOME always goes to root (desks#index) -->
+          <li class="nav-item">
+            <%= link_to "Home", root_path, class: "nav-link" %>
+          </li>
+
+          <% if user_signed_in? %>
+            <!-- “List Your Space” goes to new_desk_path -->
+            <li class="nav-item">
+              <%= link_to "List Your Space", new_desk_path, class: "nav-link" %>
+            </li>
+            <!-- Show “All Listings” for clarity; optional if root is already index -->
+            <li class="nav-item">
+              <%= link_to "All Listings", desks_path, class: "nav-link" %>
+            </li>
+            <!-- Logout (Devise) -->
+            <li class="nav-item">
+              <%= link_to "Logout", destroy_user_session_path,
+                          method: :delete, class: "nav-link" %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
+            </li>
+          <% end %>
         </ul>
       </div>
     </div>
   </nav>
+
 
   <section class="search-section">
     <div class="container">
@@ -110,49 +138,52 @@
     </div>
   </section>
 
+  <!-- FEATURED SECTION: replace three static cards with a @desks.each loop -->
   <section class="featured-section">
     <div class="container">
       <h2 class="mb-4" style="font-weight:500;letter-spacing:.5px;">Featured Workspaces</h2>
       <div class="row row-cols-1 row-cols-md-3 g-4">
 
-        <div class="col">
-          <div class="card h-100">
-            <img src="https://cdn.midjourney.com/fb17dcde-1190-4300-804c-bd3c40fbbc24/0_3.png" class="card-img-top" alt="Desk 1">
-            <div class="card-body">
-              <h5 class="card-title">Fancy Desk, Paris</h5>
-              <p class="card-text">$100/day · Historical building · 24/7 access</p>
-            </div>
-          </div>
-        </div>
+        <% @desks.each do |desk| %>
+          <div class="col">
+            <div class="card h-100">
+              <%# If you have an ActiveStorage attachment, you can render desk.image here. Otherwise show a placeholder. %>
+              <% if desk.image&.attached? %>
+                <%= image_tag desk.image.variant(resize_to_limit: [400, 200]), class: "card-img-top", alt: "Desk Image" %>
+              <% else %>
+                <img src="https://via.placeholder.com/400x200/222/444?text=No+Image" class="card-img-top" alt="No Image">
+              <% end %>
 
-        <div class="col">
-          <div class="card h-100">
-            <img src="https://cdn.midjourney.com/1c9d0758-92dd-415e-90ff-c540f86d2922/0_0.png" class="card-img-top" alt="Desk 2">
-            <div class="card-body">
-              <h5 class="card-title">Modern Space, Tokyo</h5>
-              <p class="card-text">$150/day · Coffee included · Central location</p>
-            </div>
-          </div>
-        </div>
+              <div class="card-body">
+                <h5 class="card-title"><%= desk.address %></h5>
+                <p class="card-text"><%= desk.description %></p>
+                <p><strong>Location:</strong> <%= desk.location %></p>
+                <p><strong>Shared?</strong> <%= desk.shared ? "Yes" : "No" %></p>
 
-        <div class="col">
-          <div class="card h-100">
-            <img src="https://cdn.midjourney.com/157bd89b-68f5-4e38-b316-b26e27ab9854/0_1.png" class="card-img-top" alt="Desk 3">
-            <div class="card-body">
-              <h5 class="card-title">Secret Place</h5>
-              <p class="card-text">$50/day · Private and quiet · Farm estate</p>
+                <!-- “Book” button (inside the loop, so `desk` is defined) -->
+                <%= link_to "Book",
+                            new_desk_booking_path(desk),
+                            class: "btn",
+                            style: "background: #26c6da; color: #181818; margin-top: 0.5rem;" %>
+              </div>
+
+              <div class="card-footer text-muted">
+                Listed by: <%= desk.user.name.presence || desk.user.email %>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
 
       </div>
     </div>
   </section>
 
-
+  <!-- FOOTER (unchanged) -->
   <footer class="footer">
     <div class="container">
-      &copy; 2025 Desk Array &mdash; All rights reserved · <a href="#" style="color:#bbb;text-decoration:none;">Privacy</a> · <a href="#" style="color:#bbb;text-decoration:none;">Contact</a>
+      &copy; 2025 Desk Array &mdash; All rights reserved ·
+      <a href="#" style="color:#bbb;text-decoration:none;">Privacy</a> ·
+      <a href="#" style="color:#bbb;text-decoration:none;">Contact</a>
     </div>
   </footer>
 

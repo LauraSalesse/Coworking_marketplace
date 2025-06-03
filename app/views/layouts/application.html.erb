@@ -11,6 +11,50 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background: #222;">
+      <div class="container">
+        <!-- Logo / Brand always goes to root (desks#index) -->
+        <%= link_to "Desk Array", root_path, class: "navbar-brand" %>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <!-- Home -->
+            <li class="nav-item">
+              <%= link_to "Home", root_path, class: "nav-link" %>
+            </li>
+
+            <% if user_signed_in? %>
+              <!-- Only visible when logged in: Add offer -->
+              <li class="nav-item">
+                <%= link_to "Add offer", new_desk_path, class: "nav-link" %>
+              </li>
+              <!-- All Listings (index) -->
+              <li class="nav-item">
+                <%= link_to "All Listings", desks_path, class: "nav-link" %>
+              </li>
+              <!-- Logout -->
+              <li class="nav-item">
+                <%= link_to "Logout", destroy_user_session_path,
+                            method: :delete, class: "nav-link" %>
+              </li>
+            <% else %>
+              <!-- If not signed in: Login / Sign up -->
+              <li class="nav-item">
+                <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
     <%= yield %>
   </body>
 </html>
