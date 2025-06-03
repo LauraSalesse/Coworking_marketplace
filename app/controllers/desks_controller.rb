@@ -3,6 +3,10 @@ class DesksController < ApplicationController
     @desks = Desk.all
   end
 
+  # used to show one specific desk:
+  def show
+    @desk = Desk.find(params[:id])
+  end
 
   def new
     @desk = Desk.new
@@ -21,6 +25,6 @@ class DesksController < ApplicationController
   private
 
   def desk_params
-    params.require(:desk).permit(:title, :description, :price, :address, :location, :shared)
+    params.require(:desk).permit(:title, :description, :price, :address, :location, :shared, photos: [])
   end
 end
