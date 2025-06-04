@@ -1,0 +1,32 @@
+.bookings-table-wrapper {
+  table {
+    background-color: #e0e0e0;
+    color: #181818;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  thead.thead-custom th {
+    background-color: #616161;
+    color: white;
+    border-bottom: 2px solid #444;
+  }
+
+  tbody tr:hover {
+    background-color: #d0d0d0;
+  }
+
+  .btn-search {
+    background: #616161;
+    color: #ffffff;
+    border-radius: 1rem;
+    border: none;
+    padding: 0.4rem 1rem;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+
+  .btn-search:hover {
+    background-color: #ee7a1b;
+  }
+}
