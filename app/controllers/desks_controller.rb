@@ -1,8 +1,12 @@
 class DesksController < ApplicationController
-  before_action :authenticate_user!, only: %i[new create]   # if you’re using Devise or similar
+  before_action :authenticate_user!, only: %i[new create]
 
   def index
-    @desks = Desk.all
+    if params[:search].present?
+      @desks = Desk.where("location ILIKE ?", "%#{params[:search]}%")
+    else
+      @desks = Desk.all
+    end
   end
 
   # used to show one specific desk:
@@ -26,6 +30,14 @@ class DesksController < ApplicationController
   private
 
   def desk_params
-    params.require(:desk).permit(:title, :description, :price, :address, :location, :shared, photos: [])
+      params.require(:desk).permit(
+      :title,
+      :description,
+      :address,
+      :location,
+      :shared,
+      :price,
+      photos: []
+    )
   end
 end

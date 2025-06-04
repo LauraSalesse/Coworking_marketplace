@@ -7,10 +7,6 @@
 @import "bootstrap";
 @import "font-awesome";
 
-// Your CSS partials
-@import "components/index";
-@import "pages/index";
-
     body {
       background: #181818;
       color: #e9e9e9;
@@ -85,3 +81,14 @@
   margin-left: 20rem;
   margin-right: 20rem;
   }
+
+input::placeholder,
+textarea::placeholder {
+  color: #fff !important;
+  opacity: 1;
+}
+
+input::-ms-input-placeholder,
+textarea::-ms-input-placeholder {
+  color: #fff !important;
+}
