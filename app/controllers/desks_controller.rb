@@ -2,7 +2,11 @@ class DesksController < ApplicationController
   before_action :authenticate_user!, only: %i[new create]
 
   def index
-    @desks = Desk.all
+    if params[:search].present?
+      @desks = Desk.where("location ILIKE ?", "%#{params[:search]}%")
+    else
+      @desks = Desk.all
+    end
   end
 
   # used to show one specific desk:
@@ -26,6 +30,12 @@ class DesksController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  # added by Max
+  def mydesks
+    @desks = current_user.desks
+  end
+
 
   private
 
