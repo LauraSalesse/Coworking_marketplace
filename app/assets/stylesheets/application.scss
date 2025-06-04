@@ -76,6 +76,54 @@
       margin-top: 3rem;
     }
 
+    // added by Max
+    .space-card:hover {
+      transform: translateY(-2px);
+      transition: transform 0.2s;
+    }
+    .calendar-day:hover {
+      background: #26c6da !important;
+      color: #181818;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: #26c6da;
+      border: none;
+      color: #181818;
+      border-radius: 2rem;
+    }
+    .btn-outline-secondary {
+      border: 1px solid #666;
+      color: #ccc;
+      border-radius: 2rem;
+    }
+    .btn-outline-secondary:hover {
+      background: #666;
+      color: #fff;
+      border-radius: 2rem;
+    }
+    .text-light-gray {
+      color: #bbb;
+    }
+
+    .text-medium-gray {
+      color: #888;
+    }
+
+    .text-dark-gray {
+      color: #666;
+    }
+    .calendar-select {
+      width: auto;
+      background: #333;
+      color: #fff;
+      border: 1px solid #555;
+      text-align: center !important;
+      text-align-last: center !important;
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+
 // some styles for the desks/show view (from Laura):
 .container_for_the_desk_show {
   margin-left: 20rem;
