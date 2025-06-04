@@ -34,7 +34,7 @@ desk1 = Desk.create!(
   title: "Sunny Desk in Tokyo",
   description: "Quiet desk in a stylish coworking.",
   address: "1-chōme-6 Ōmorikita, Ota City, Tokyo 143-0016, Japan",
-  location: "Tokyo",
+  location: "Ota City, Tokyo",
   shared: true,
   price: 45,
   user: user
@@ -51,7 +51,7 @@ desk2 = Desk.create!(
   title: "Elegant Workspace in Paris Apartment",
   description: "Charming desk space in a Haussmann-style apartment near Le Marais. Ideal for writers and designers.",
   address: "12 Rue des Archives, 75003 Paris, France",
-  location: "Le Marais",
+  location: "Paris, Le Marais",
   shared: false,
   price: 50,
   user: user
@@ -68,7 +68,7 @@ desk3 = Desk.create!(
   title: "Rustic Barn Loft Desk",
   description: "Come and work in my barn. Quiet, rural, and full of character — strong WiFi included.",
   address: "Chambige, 19200 Chaveroche",
-  location: "Auvergne",
+  location: "Chaveroche, Auvergne",
   shared: true,
   price: 30,
   user: user
