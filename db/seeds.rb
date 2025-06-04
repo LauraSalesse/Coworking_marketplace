@@ -41,7 +41,7 @@ desk1 = Desk.create!(
 )
 desk1.photos.attach([
   {
-    io: URI.open("https://cdn.midjourney.com/1c9d0758-92dd-415e-90ff-c540f86d2922/0_0.png"),
+    io: URI.open("https://media.discordapp.net/attachments/1270745752829825086/1379812064385830982/tokyo.png?ex=6841999f&is=6840481f&hm=95be6efe642e49279718283fc3c3b395cce93214f535eabb2bbeb9bed697bd15&=&format=webp&quality=lossless&width=930&height=620"),
     filename: "desk1Tokyo.jpg",
     content_type: "image/jpeg"
   }
@@ -58,7 +58,7 @@ desk2 = Desk.create!(
 )
 desk2.photos.attach([
     {
-    io: URI.open("https://cdn.midjourney.com/fb17dcde-1190-4300-804c-bd3c40fbbc24/0_3.png"),
+    io: URI.open("https://media.discordapp.net/attachments/1270745752829825086/1379812063915933726/paris.png?ex=6841999f&is=6840481f&hm=a30df98728b61f75cd5dbd919380f471c8a5900bb8def655619205db1e817c13&=&format=webp&quality=lossless&width=930&height=620"),
     filename: "desk1Paris.jpg",
     content_type: "image/jpeg"
   }
@@ -76,7 +76,7 @@ desk3 = Desk.create!(
 )
 desk3.photos.attach([
    {
-    io: URI.open("https://cdn.midjourney.com/157bd89b-68f5-4e38-b316-b26e27ab9854/0_1.png"),
+    io: URI.open("https://media.discordapp.net/attachments/1270745752829825086/1379812063207227444/barn.png?ex=6841999f&is=6840481f&hm=70461294c2ff4b5b19c15dd317a4a20bd00e989d17760ba9d344554a7c3d206f&=&format=webp&quality=lossless&width=930&height=620"),
     filename: "desk1barn.jpg",
     content_type: "image/jpeg"
   },
