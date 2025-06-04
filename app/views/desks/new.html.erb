@@ -1,0 +1,88 @@
+<div class="container mt-5">
+  <h1 class="mb-4">List Your Space</h1>
+
+  <%= form_with model: @desk, local: true, html: { multipart: true } do |f| %>
+    <% if @desk.errors.any? %>
+      <div class="alert alert-danger">
+        <h4>The following errors prevented your space from being listed:</h4>
+        <ul>
+          <% @desk.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <!-- TITLE -->
+    <div class="mb-3">
+      <%= f.label :title, class: "form-label" %>
+      <%= f.text_field :title,
+            class: "form-control",
+            placeholder: "e.g. Cozy Downtown Studio",
+            autocomplete: "off" %>
+    </div>
+
+    <!-- DESCRIPTION -->
+    <div class="mb-3">
+      <%= f.label :description, class: "form-label" %>
+      <%= f.text_area :description,
+            class: "form-control",
+            rows: 4,
+            placeholder: "Describe your space (size, amenities, etc.)",
+            autocomplete: "off" %>
+    </div>
+
+    <!-- ADDRESS -->
+    <div class="mb-3">
+      <%= f.label :address, class: "form-label" %>
+      <%= f.text_field :address,
+            class: "form-control",
+            placeholder: "123 Main St, City, Country",
+            autocomplete: "street-address" %>
+    </div>
+
+    <!-- LOCATION -->
+    <div class="mb-3">
+      <%= f.label :location, class: "form-label" %>
+      <%= f.text_field :location,
+            class: "form-control",
+            placeholder: "e.g. London, Manchester, Birmingham",
+            autocomplete: "off" %>
+    </div>
+
+    <!-- PRICE -->
+    <div class="mb-3">
+      <%= f.label :price, class: "form-label" %>
+      <div class="input-group">
+        <span class="input-group-text">$</span>
+        <%= f.number_field :price,
+              class: "form-control",
+              min: 0,
+              step: 1,
+              placeholder: "Daily price (e.g. 50)" %>
+      </div>
+    </div>
+
+    <!-- SHARED -->
+    <div class="mb-3 form-check">
+      <%= f.check_box :shared, class: "form-check-input" %>
+      <%= f.label :shared, "Shared Space?", class: "form-check-label" %>
+    </div>
+
+    <!-- IMAGE UPLOAD -->
+    <div class="mb-3">
+      <%= f.label :photos, "Upload Photos", class: "form-label" %>
+      <%= f.file_field :photos,
+            multiple: true,
+            accept: "image/*",
+            class: "form-control" %>
+      <div class="form-text">
+        You can select one or more images (JPG, PNG, etc.).
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-start">
+      <%= f.submit "Create Listing", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
