@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get '/offers', to: 'desks#index', as: 'offers'
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  # root "posts#index"https://github.com/LauraSalesse/Coworking_marketplace/compare/master...viewDesks
   resources :desks, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
   # add the routes to mydesks Max
