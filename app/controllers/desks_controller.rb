@@ -14,6 +14,10 @@ class DesksController < ApplicationController
     @desk = Desk.find(params[:id])
   end
 
+  def confirm
+    @desk = Desk.find(params[:id])
+  end
+
   def new
     @desk = Desk.new
   end
