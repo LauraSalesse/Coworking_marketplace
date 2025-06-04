@@ -1,34 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-dark">
-  <div class="container">
-
-    <a class="navbar-brand" href="#">
-      <img src="https://cdn.midjourney.com/d64d3314-c8f7-4783-adb4-372aecc8b739/0_1.png"
-        alt="Desk Array Logo"
-        style="height:60px; vertical-align:middle; margin-right:8px; border-radius:50%;"> Desk Array
-    </a>
-
-    <div class="collapse navbar-collapse justify-content-end">
-      <ul class="navbar-nav">
-        <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
-        <li class="nav-item">
-  <%= link_to "List Your Space", new_desk_path, class: "nav-link" %>
-</li>
-
-        <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Sign Up</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
 <section class="search-section">
   <div class="container">
     <h1>Book your desk today</h1>
-    <form class="d-flex justify-content-center align-items-center gap-2" style="max-width:600px;margin:auto;">
-      <input type="text" class="form-control" placeholder="Where do you want to work?" style="max-width: 220px;">
-      <input type="date" class="form-control" style="max-width: 150px;">
+    <%= form_with url: offers_path, method: :get, local: true, class: "d-flex justify-content-center align-items-center gap-2", html: { style: "max-width:600px;margin:auto;" } do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Enter a location", class: "form-control", style: "max-width: 220px;" %>
       <button type="submit" class="btn btn-search">Search</button>
-    </form>
+    <% end %>
   </div>
 </section>
 
