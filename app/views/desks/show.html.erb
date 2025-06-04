@@ -36,7 +36,7 @@
     <p><strong>Shared:</strong><%= @desk.shared ? "The space will be shared with others" : "you will have the entire space for yourself"%></p>
     <p><strong>Price:</strong><%=@desk.price%>$/day</p>
 
-    <%= link_to "List Your Desk!", confirm_desk_path(@desk), class: "btn btn-primary" %>
+    <%= link_to "Confirm", confirm_desk_path(@desk), class: "btn btn-primary" %>
     <p>I will need to make it nicer, and actually link the button to something </p>
   </div>
 
