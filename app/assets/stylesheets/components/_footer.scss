@@ -1,8 +1,20 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .footer {
   padding: 2rem 0 1rem 0;
   text-align: center;
   color: #888;
   font-size: 0.95rem;
   border-top: 1px solid #2a2a2a;
-  margin-top: 3rem;
+  margin-top: 6rem;
 }
