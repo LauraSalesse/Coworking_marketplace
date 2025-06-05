@@ -41,7 +41,7 @@ desk1 = Desk.create!(
 )
 desk1.photos.attach([
   {
-    io: URI.open("https://media.discordapp.net/attachments/1270745752829825086/1379812064385830982/tokyo.png?ex=6841999f&is=6840481f&hm=95be6efe642e49279718283fc3c3b395cce93214f535eabb2bbeb9bed697bd15&=&format=webp&quality=lossless&width=930&height=620"),
+    io: URI.open("https://res.cloudinary.com/dfqc2bsdp/image/upload/v1749126843/development/iv6uc2b2izhejb5iafm9s7rn65wj.webp"),
     filename: "desk1Tokyo.jpg",
     content_type: "image/jpeg"
   }
@@ -58,7 +58,7 @@ desk2 = Desk.create!(
 )
 desk2.photos.attach([
     {
-    io: URI.open("https://media.discordapp.net/attachments/1270745752829825086/1379812063915933726/paris.png?ex=6841999f&is=6840481f&hm=a30df98728b61f75cd5dbd919380f471c8a5900bb8def655619205db1e817c13&=&format=webp&quality=lossless&width=930&height=620"),
+    io: URI.open("https://res.cloudinary.com/dfqc2bsdp/image/upload/v1749126627/development/6fvoi4q48er64ne4kn8r8qkjc7rt.webp"),
     filename: "desk1Paris.jpg",
     content_type: "image/jpeg"
   }
@@ -76,12 +76,12 @@ desk3 = Desk.create!(
 )
 desk3.photos.attach([
    {
-    io: URI.open("https://media.discordapp.net/attachments/1270745752829825086/1379812063207227444/barn.png?ex=6841999f&is=6840481f&hm=70461294c2ff4b5b19c15dd317a4a20bd00e989d17760ba9d344554a7c3d206f&=&format=webp&quality=lossless&width=930&height=620"),
+    io: URI.open("https://res.cloudinary.com/dfqc2bsdp/image/upload/v1749126629/development/1pqg44aa9zrhm3fu1tfdoak4m2tc.webp"),
     filename: "desk1barn.jpg",
     content_type: "image/jpeg"
   },
      {
-    io: URI.open("https://assets.hvmag.com/2023/05/LMGzByD0-BackyardBarn5.jpg"),
+    io: URI.open("https://res.cloudinary.com/dfqc2bsdp/image/upload/v1749126631/development/73wdpdffngakl8bqfhj8joqo8d6m.jpg"),
     filename: "desk2barn.jpg",
     content_type: "image/jpeg"
   }
