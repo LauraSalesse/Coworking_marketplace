@@ -1,0 +1,6 @@
+<div style="font-size: 0.9rem; max-width: 200px;">
+  <h5 style="margin-bottom: 0.25rem;"><%= desk.title %></h5>
+  <p style="margin-bottom: 0.25rem;"><%= desk.location %></p>
+  <p style="margin-bottom: 0.5rem;">$<%= desk.price %> / day</p>
+  <%= link_to "View details", desk_path(desk), class: "btn btn-sm btn-primary" %>
+</div>
