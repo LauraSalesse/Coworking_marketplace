@@ -12,3 +12,4 @@ pin "@popperjs/core", to: "popper.js", preload: true
 
 
 pin "@rails/ujs", to: "@rails--ujs.js" # @7.1.3
+pin "flatpickr" # @4.6.13

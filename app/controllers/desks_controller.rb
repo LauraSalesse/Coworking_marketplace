@@ -34,6 +34,8 @@ class DesksController < ApplicationController
   # added by Max
   def mydesks
     @desks = current_user.desks
+    @current_month = Date.current.month
+    @current_year = Date.current.year
   end
 
 

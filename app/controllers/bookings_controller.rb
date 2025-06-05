@@ -6,11 +6,11 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @desk = Desk.find(params[:desk_id])
+    @desk = Desk.find(params[:booking][:desk_id])
 
     # Parse the two dates from params. If the user enters invalid dates, parsing returns nil.
-    start_date = (Date.parse(params[:start_date]) rescue nil)
-    end_date   = (Date.parse(params[:end_date]) rescue nil)
+    start_date = (Date.parse(params[:booking][:start_date]) rescue nil)
+    end_date   = (Date.parse(params[:booking][:end_date]) rescue nil)
 
     @booking = Booking.new(
       user: current_user,
