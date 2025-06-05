@@ -66,8 +66,14 @@ class DesksController < ApplicationController
   # (Added by max)
   def mydesks
     @desks = current_user.desks
-    @current_month = Date.today.month
-    @current_year  = Date.today.year
+
+    if params[:month].present? && params[:year].present?
+      @current_month = params[:month].to_i
+      @current_year = params[:year].to_i
+    else
+      @current_month = Date.today.month
+      @current_year = Date.today.year
+    end
   end
 
   private
