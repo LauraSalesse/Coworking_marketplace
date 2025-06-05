@@ -28,4 +28,10 @@ class BookingsController < ApplicationController
       redirect_to desk_path(@desk), alert: "Could not create booking. Please select valid dates."
     end
   end
+
+  def destroy
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+    redirect_to renter_bookings_path, notice: "Your listing has been removed."
+  end
 end

@@ -30,6 +30,7 @@
               <th>Contact</th>
               <th>To pay in cash</th>
               <th>See the listing</th>
+              <th>Cancel</th>
             </tr>
           </thead>
           <tbody>
@@ -48,6 +49,9 @@
                 <td><%= desk.price * duration %></td>
                 <td>
                   <%= link_to "View", desk_path(desk), class: "btn btn-search" %>
+                </td>
+               <td>
+                  <%= link_to "Cancel", booking_path(booking), method: :delete, data: {confirm: "are you sure you want to cancel your booking at #{booking.desk.title} starting #{booking.start_date}?"}, class: "btn btn-danger" %>
                 </td>
               </tr>
             <% end %>

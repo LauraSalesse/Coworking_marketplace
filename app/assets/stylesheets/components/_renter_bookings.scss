@@ -29,4 +29,18 @@
   .btn-search:hover {
     background-color: #ee7a1b;
   }
+
+    .btn-danger {
+    background: #7a3838;
+    color: #ffffff;
+    border-radius: 1rem;
+    border: none;
+    padding: 0.4rem 1rem;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+
+  .btn-danger:hover {
+    background-color: #ee7a1b;
+  }
 }
