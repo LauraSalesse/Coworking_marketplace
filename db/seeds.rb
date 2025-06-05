@@ -42,7 +42,7 @@ desk1 = Desk.create!(
 desk1.photos.attach([
   {
     io: URI.open("https://media.discordapp.net/attachments/1270745752829825086/1379812064385830982/tokyo.png?ex=6841999f&is=6840481f&hm=95be6efe642e49279718283fc3c3b395cce93214f535eabb2bbeb9bed697bd15&=&format=webp&quality=lossless&width=930&height=620"),
-    filename: "japan.jpg",
+    filename: "desk1Tokyo.jpg",
     content_type: "image/jpeg"
   }
 ])
