@@ -16,3 +16,12 @@
 .nav-link:hover {
   color: #fff !important;
 }
+
+.user-nav {
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  gap: 2px; /* space between avatar and text */
+}
