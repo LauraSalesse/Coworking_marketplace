@@ -7,7 +7,7 @@ export default class extends Controller {
       altInput: true,
       altFormat: "F j, Y",
       dateFormat: "Y-m-d",
-      minDate: "today" // ⛔ prevents selecting past dates
+      minDate: "today"
     })
   }
 }

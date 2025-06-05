@@ -22,5 +22,5 @@ Rails.application.routes.draw do
   get 'mydesks', to: 'desks#mydesks', as: :mydesks
 
   # Booking creation (POST /bookings → bookings#create):
-  resources :bookings, only: [:create]
+  resources :bookings, only: [:create, :destroy]
 end
