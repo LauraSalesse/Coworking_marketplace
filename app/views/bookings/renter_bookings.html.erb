@@ -1,15 +1,56 @@
-<h1>Where I will be working in the following days</h1>
 
-<% if @bookings.any? %>
-  <ul>
-    <% @bookings.each do |booking| %>
-      <li>
-        Desk: <%= booking.desk.title %> |
-        From: <%= booking.start_date %> |
-        To: <%= booking.end_date %>
-      </li>
+<section class="search-section">
+  <div class="container">
+    <h1>My next work spots:</h1>
+    <%= form_with url: offers_path, method: :get, local: true, class: "d-flex justify-content-center align-items-center gap-2", html: { style: "max-width:600px;margin:auto;" } do %>
     <% end %>
-  </ul>
-<% else %>
-  <p>You have no bookings yet.</p>
-<% end %>
+  </div>
+</section>
+
+<section class="featured-section">
+  <div class="container">
+    <% if @bookings.any? %>
+      <div class="bookings-table-wrapper">
+        <table class="table table-striped table-hover align-middle">
+          <thead class="thead-custom">
+            <tr class="thead-danger">
+              <th>Check-in</th>
+              <th>Check-out</th>
+              <th>Desk</th>
+              <th>Location</th>
+              <th>Address</th>
+              <th>Day(s)</th>
+              <th>Host</th>
+              <th>Contact</th>
+              <th>To pay in cash</th>
+              <th>See the listing</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @bookings.each do |booking| %>
+              <% desk = booking.desk %>
+              <tr>
+                <td><%= booking.start_date.strftime('%b %d, %Y') %></td>
+                <td><%= booking.end_date.strftime('%b %d, %Y') %></td>
+                <td><%= desk.title %></td>
+                <td><%= desk.location %></td>
+                <td><%= desk.address %></td>
+                <% duration = (booking.end_date - booking.start_date + 1).to_i %>
+                <td><%= duration %></td>
+                <td><%= desk.user.name %></td>
+                <td><%= desk.user.email%>
+                <% price_per_day = desk.price %>
+                <td><%= price_per_day * duration %></td>
+                <td>
+                  <%= link_to "view", desk_path(desk), class: "btn-search"%>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+        <p>You have no bookings yet.</p>
+    <% end %>
+  </div>
+</section>

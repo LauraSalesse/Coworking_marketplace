@@ -21,7 +21,7 @@ puts "database is clean!"
 puts "creating user...."
 # seeding user
 user = User.create!(
-  email: "test@example.com",
+  email: "martin@example.com",
   password: "password",
   name: "Martin Dupont",
   description: "I am design freelancer working remote and I love trying out different workspace, especially when there is coffee!"
@@ -87,3 +87,27 @@ desk3.photos.attach([
   }
 ])
 puts "desks created!"
+
+puts "seeding bookings..."
+  Booking.create!(
+    user: user,
+    desk: desk1,
+    start_date: Date.today + 1,
+    end_date: Date.today + 3
+  )
+
+  Booking.create!(
+    user: user,
+    desk: desk1,
+    start_date: Date.today + 5,
+    end_date: Date.today + 8
+  )
+
+  Booking.create!(
+  user: user,
+  desk: desk2,
+  start_date: Date.today + 20,
+  end_date: Date.today + 20
+)
+
+puts "bookings created! To see them, log in under test@example.com, and password = password"
