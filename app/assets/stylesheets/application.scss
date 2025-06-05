@@ -9,3 +9,34 @@
 @import "components/renter_bookings";
 
 @import url("https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css");
+
+.mapboxgl-popup-content {
+  color: #111111;        // very dark gray/near‐black text
+  font-weight: 600;      // slightly bolder
+  font-size: 0.95rem;    // if you want it a bit bigger
+}
+
+/* If you want the heading specifically even darker/larger: */
+.mapboxgl-popup-content h5 {
+  color: #000000;        // pure black for the title
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+/* And ensure links/buttons inside the popup are also visible */
+.mapboxgl-popup-content a.btn {
+  color: #fff;           // white text on the button
+  background-color: #333;
+  border-color: #222;
+}
+
+/* Optional: make the popup background a touch more opaque */
+.mapboxgl-popup-content {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.mapboxgl-popup-content a.btn.btn-sm.btn-primary:hover {
+  background-color: #007bff;
+  border-color:     #0056b8;
+  color:            #fff;
+}
