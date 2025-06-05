@@ -32,6 +32,6 @@ class BookingsController < ApplicationController
   def destroy
     @booking = Booking.find(params[:id])
     @booking.destroy
-    redirect_to renter_bookings_path, notice: "Your listing has been removed."
+    redirect_to renter_bookings_path, notice: "Your booking at #{@booking.desk.title} starting #{@booking.start_date} has been removed."
   end
 end
