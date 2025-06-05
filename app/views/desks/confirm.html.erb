@@ -1,9 +1,7 @@
 <div class="container mt-5">
-  <h1 class="mb-4">Confirmation</h1>
-
   <!-- Desk title -->
   <div class="mb-3">
-    <h2><%= @desk.title %></h2>
+    <h1 class="mb-4">You just booked <%=@desk.title%>
   </div>
 
   <!-- Image carousel (if there are photos) -->
@@ -40,5 +38,7 @@
   <!-- You could later add a real "Confirm" button here -->
   <div class="d-flex gap-2">
     <%= link_to "Back to Details", desk_path(@desk), class: "btn btn-outline-secondary" %>
+    <%= link_to "See all my bookings", renter_bookings_path(@desk), class: "btn btn-outline-primary" %>
+
   </div>
 </div>
