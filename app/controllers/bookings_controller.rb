@@ -20,10 +20,10 @@ class BookingsController < ApplicationController
     )
 
     if @booking.save
-      nights = (@booking.end_date - @booking.start_date).to_i
+      nights = (@booking.end_date - @booking.start_date + 1).to_i
       desk_title = @booking.desk.title
       flash[:notice] = "you just booked the flat #{desk_title} for #{nights} night#{'s' if nights > 1}!"
-      redirect_to renter_bookings_path, notice: "you just booked the flat '#{desk_title}' for #{nights} night#{'s' if nights > 1}! See the booking below"
+      redirect_to renter_bookings_path, notice: "you just booked the flat '#{desk_title}' for #{nights} day#{'s' if nights > 1}! See the booking below"
     else
       redirect_to desk_path(@desk), alert: "Could not create booking. Please select valid dates."
     end
