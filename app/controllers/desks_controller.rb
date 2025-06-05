@@ -1,15 +1,28 @@
 class DesksController < ApplicationController
-  before_action :authenticate_user!, only: %i[new create]
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
 
   def index
+    # If a search term was provided, filter by it; otherwise, show all.
     if params[:search].present?
-      @desks = Desk.where("location ILIKE ?", "%#{params[:search]}%")
+      term = "%#{params[:search]}%"
+      @desks = Desk.where("location ILIKE ? OR title ILIKE ?", term, term)
     else
       @desks = Desk.all
     end
+
+    # Build markers only for desks that have coordinates
+    @markers = @desks.geocoded.map do |desk|
+      {
+        lat: desk.latitude,
+        lng: desk.longitude,
+        info_window_html: render_to_string(
+          partial: "desks/info_window",
+          locals: { desk: desk }
+        )
+      }
+    end
   end
 
-  # used to show one specific desk:
   def show
     @desk = Desk.find(params[:id])
   end
@@ -31,18 +44,36 @@ class DesksController < ApplicationController
     end
   end
 
-  # added by Max
-  def mydesks
-    @desks = current_user.desks
-    @current_month = Date.current.month
-    @current_year = Date.current.year
+  def edit
+    @desk = Desk.find(params[:id])
   end
 
+  def update
+    @desk = Desk.find(params[:id])
+    if @desk.update(desk_params)
+      redirect_to @desk, notice: "Your listing has been updated."
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @desk = Desk.find(params[:id])
+    @desk.destroy
+    redirect_to mydesks_path, notice: "Your listing has been removed."
+  end
+
+  # (Added by max)
+  def mydesks
+    @desks = current_user.desks
+    @current_month = Date.today.month
+    @current_year  = Date.today.year
+  end
 
   private
 
   def desk_params
-      params.require(:desk).permit(
+    params.require(:desk).permit(
       :title,
       :description,
       :address,
