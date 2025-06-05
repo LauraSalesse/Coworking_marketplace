@@ -7,6 +7,12 @@
   </div>
 </section>
 
+<% if flash[:notice] %>
+  <div class="alert alert-success text-center">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
 <section class="featured-section">
   <div class="container">
     <% if @bookings.any? %>
