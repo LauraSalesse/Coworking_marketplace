@@ -1,7 +1,7 @@
-
 <section class="search-section">
   <div class="container">
     <h1>My next work spots:</h1>
+    <!-- (You can remove this empty form if you don’t need filtering here) -->
     <%= form_with url: offers_path, method: :get, local: true, class: "d-flex justify-content-center align-items-center gap-2", html: { style: "max-width:600px;margin:auto;" } do %>
     <% end %>
   </div>
@@ -31,18 +31,17 @@
               <% desk = booking.desk %>
               <tr>
                 <td><%= booking.start_date.strftime('%b %d, %Y') %></td>
-                <td><%= booking.end_date.strftime('%b %d, %Y') %></td>
+                <td><%= booking.end_date.strftime('%b %d, %Y')   %></td>
                 <td><%= desk.title %></td>
                 <td><%= desk.location %></td>
                 <td><%= desk.address %></td>
                 <% duration = (booking.end_date - booking.start_date + 1).to_i %>
                 <td><%= duration %></td>
                 <td><%= desk.user.name %></td>
-                <td><%= desk.user.email%>
-                <% price_per_day = desk.price %>
-                <td><%= price_per_day * duration %></td>
+                <td><%= desk.user.email %></td>
+                <td><%= desk.price * duration %></td>
                 <td>
-                  <%= link_to "view", desk_path(desk), class: "btn-search"%>
+                  <%= link_to "View", desk_path(desk), class: "btn btn-search" %>
                 </td>
               </tr>
             <% end %>
@@ -50,9 +49,9 @@
         </table>
       </div>
     <% else %>
-        <p>You have no bookings yet.</p>
+      <p>You have no bookings yet.</p>
     <% end %>
-      <%= link_to "Back to homepage", desks_path(@desk), class: "btn btn-outline-secondary" %>
-  </div>
 
+    <%= link_to "Back to homepage", desks_path, class: "btn btn-outline-secondary mt-3" %>
+  </div>
 </section>
