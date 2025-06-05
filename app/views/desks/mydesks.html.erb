@@ -72,17 +72,36 @@
               </div>
 
               <!-- Calendar Days (5 weeks max) -->
+
               <% 5.times do |week| %>
                 <div class="d-flex mb-1">
-                  <% 7 .times do |day| %>
-                    <div class="calendar-day" style="width: 14.28%; text-align: center; padding: 4px; font-size: 0.8rem; background: #333; margin: 1px; border-radius: 4px;">
-                      <%= (week * 7 + day + 1) <= 31 ? (week * 7 + day + 1) : '' %>
-                    </div>
+                  <% 7.times do |day| %>
+                    <% day_number = week * 7 + day + 1 %>
+                    <% if day_number <= 31 %>
+                      <% begin %>
+                        <% current_date = Date.new(@current_year, @current_month, day_number) %>
+                        <% is_booked = desk.date_is_booked?(current_date) %>
+                        <% background_color = is_booked ? '#dc3545' : '#333' %>
+                        <% css_class = is_booked ? 'calendar-day booked' : 'calendar-day available' %>
+
+                        <div class="<%= css_class %>" style="width: 14.28%; text-align: center; padding: 4px; font-size: 0.8rem; background: <%= background_color %>; margin: 1px; border-radius: 4px; color: <%= is_booked ? 'white' : '#e9e9e9' %>;">
+                          <%= day_number %>
+                        </div>
+                      <% rescue Date::Error %>
+                        <!-- Invalid date (like June 31st) - show empty cell -->
+                        <div class="calendar-day empty" style="width: 14.28%; text-align: center; padding: 4px; font-size: 0.8rem; background: transparent; margin: 1px; border-radius: 4px;">
+                        </div>
+                      <% end %>
+                    <% else %>
+                      <div class="calendar-day empty" style="width: 14.28%; text-align: center; padding: 4px; font-size: 0.8rem; background: transparent; margin: 1px; border-radius: 4px;">
+                      </div>
+                    <% end %>
                   <% end %>
                 </div>
               <% end %>
             </div>
           </div>
+
 
           <!-- Action Buttons -->
           <div class="d-flex gap-2">
