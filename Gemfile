@@ -76,3 +76,7 @@ gem 'devise'
 
 gem "dotenv-rails"
 gem "cloudinary"
+
+gem "geocoder"
+
+gem "importmap-rails"
