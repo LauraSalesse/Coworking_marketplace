@@ -1,0 +1,20 @@
+<div class="container mt-5">
+  <h1 class="mb-4">Booking Confirmed</h1>
+
+    <div class="card p-4 mb-4 booking-card-light" style="border-radius: 1rem;">
+    <h3><%= @desk.title %></h3>
+    <p><strong>Location:</strong> <%= @desk.location %></p>
+    <p><strong>Address:</strong>  <%= @desk.address  %></p>
+    <hr>
+
+    <p><strong>Check-in Date:</strong>  <%= @booking.start_date.strftime('%b %d, %Y') %></p>
+    <p><strong>Check-out Date:</strong> <%= @booking.end_date.strftime('%b %d, %Y')   %></p>
+    <% nights = (@booking.end_date - @booking.start_date + 1).to_i %>
+    <p><strong>Number of Days:</strong> <%= nights %> day<%= 's' if nights > 1 %></p>
+    <p><strong>Total Cost:</strong> $<%= @desk.price * nights %></p>
+    <hr>
+
+    <%= link_to "Edit Booking", edit_booking_path(@booking), class: "btn btn-primary me-2" %>
+    <%= link_to "Back to My Bookings", renter_bookings_path, class: "btn btn-outline-secondary" %>
+  </div>
+</div>
