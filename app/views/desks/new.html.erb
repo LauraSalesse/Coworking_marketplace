@@ -1,11 +1,11 @@
-<div class="container mt-5">
+<div class="container py-5" style="max-width: 600px;">
   <h1 class="mb-4">List Your Space</h1>
 
   <%= form_with model: @desk, local: true, html: { multipart: true } do |f| %>
     <% if @desk.errors.any? %>
-      <div class="alert alert-danger">
-        <h4>The following errors prevented your space from being listed:</h4>
-        <ul>
+      <div class="alert alert-danger" style="border-radius: 2rem;">
+        <h4 class="mb-2">The following errors prevented your space from being listed:</h4>
+        <ul class="mb-0">
           <% @desk.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
           <% end %>
@@ -54,7 +54,7 @@
     <div class="mb-3">
       <%= f.label :price, class: "form-label" %>
       <div class="input-group">
-        <span class="input-group-text">$</span>
+        <span class="input-group-text" style="background: #222; color: #e9e9e9; border-radius: 2rem 0 0 2rem; border: 1px solid #969fa0;">$</span>
         <%= f.number_field :price,
               class: "form-control",
               min: 0,
@@ -76,13 +76,13 @@
             multiple: true,
             accept: "image/*",
             class: "form-control" %>
-      <div class="form-text">
+      <div class="form-text" style="color: #e9e9e9;">
         You can select one or more images (JPG, PNG, etc.).
       </div>
     </div>
 
     <div class="d-flex justify-content-start">
-      <%= f.submit "Create Listing", class: "btn btn-primary" %>
+      <%= f.submit "Create Listing", class: "btn btn-search" %>
     </div>
   <% end %>
 </div>
