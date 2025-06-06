@@ -10,6 +10,19 @@
 
 @import url("https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css");
 
+// to change the font all over  -> see the application.html.erb
+/* Body font (Chivo) */
+body {
+  font-family: 'Chivo', sans-serif;
+}
+
+/* Titles (Cambo) */
+h1, h2, h3, h4, h5, h6,
+.card-title,
+.navbar-brand {
+  font-family: 'Cambo', serif;
+}
+
 .mapboxgl-popup-content {
   color: #ffffff;        // very dark gray/near‐black text
   font-weight: 300;      // slightly bolder
