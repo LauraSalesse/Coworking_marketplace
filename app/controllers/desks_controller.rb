@@ -45,11 +45,11 @@ class DesksController < ApplicationController
   end
 
   def edit
-    @desk = Desk.find(params[:id])
+    @desk = current_user.desks.find(params[:id])
   end
 
   def update
-    @desk = Desk.find(params[:id])
+    @desk = current_user.desks.find(params[:id])
     if @desk.update(desk_params)
       redirect_to @desk, notice: "Your listing has been updated."
     else
