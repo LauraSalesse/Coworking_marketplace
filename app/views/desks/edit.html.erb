@@ -69,15 +69,40 @@
       <%= f.label :shared, "Shared Space?", class: "form-check-label" %>
     </div>
 
-    <!-- IMAGE UPLOAD -->
+    <!-- EXISTING PHOTOS -->
+    <% if @desk.photos.attached? %>
+      <div class="mb-4 photo-section">
+        <label class="form-label">Current Photos</label>
+        <div class="row">
+          <% @desk.photos.each do |photo| %>
+            <div class="col-md-4 mb-3">
+              <div class="card photo-edit-card">
+                <%= image_tag photo, class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
+                <div class="card-body p-2">
+                  <%= link_to "Remove",
+                      photo_desk_path(@desk, photo_id: photo.id),
+                      method: :delete,
+                      class: "btn btn-danger btn-sm w-100",
+                      data: {
+                        confirm: "Are you sure you want to remove this photo?"
+                      } %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <!-- ADD NEW PHOTOS -->
     <div class="mb-3">
-      <%= f.label :photos, "Upload Photos", class: "form-label" %>
+      <%= f.label :photos, "Add New Photos", class: "form-label" %>
       <%= f.file_field :photos,
             multiple: true,
             accept: "image/*",
             class: "form-control" %>
       <div class="form-text">
-        You can select one or more images (JPG, PNG, etc.).
+        You can select one or more images (JPG, PNG, etc.). These will be added to your existing photos.
       </div>
     </div>
 

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :desks, only: %i[index new create show edit update destroy] do
     member do
       get :confirm
+      delete 'photos/:photo_id', to: 'desks#destroy_photo', as: 'photo'
     end
   end
 
