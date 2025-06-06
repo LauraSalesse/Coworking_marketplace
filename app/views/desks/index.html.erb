@@ -9,7 +9,7 @@
                          placeholder: "Enter a location",
                          class: "form-control",
                          style: "max-width: 220px;" %>
-      <button type="submit" class="btn btn-search">Search</button>
+      <button type="submit" class="btn btn-search"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
     <% end %>
   </div>
 </section>
@@ -33,11 +33,11 @@
                     <% end %>
 
                 <div class="card-body">
-                  <h5 class="card-title"><%= desk.title %></h5>
+                  <h5 class="card-title"><%=   desk.title %></h5>
                   <p class="card-text">
-                    <strong>Price:</strong> $<%= desk.price %> / day<br>
-                    <strong>Location:</strong> <%= desk.location %><br>
-                    <strong>Description:</strong> <%= desk.description.truncate(60) %>
+                    <i class="fa-solid fa-money-bill"></i> $<%= desk.price %> / day<br>
+                    <i class="fa-solid fa-location-dot"></i>  <%= desk.location %><br>
+                    <i class="fa-solid fa-circle-info"></i>  <%= desk.description.truncate(60) %>
                   </p>
                 </div>
               </div>
