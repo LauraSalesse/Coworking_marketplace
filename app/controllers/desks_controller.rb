@@ -1,5 +1,5 @@
 class DesksController < ApplicationController
-  before_action :authenticate_user!, only: %i[new create edit update destroy]
+  before_action :authenticate_user!, only: %i[new create edit update destroy mydesks]
 
   def index
     # If a search term was provided, filter by it; otherwise, show all.
