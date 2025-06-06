@@ -34,11 +34,11 @@
 
   <!--more details-->
   <div class="desk-details">
-    <p><strong>Description:</strong><%=@desk.description%></p>
-    <p><strong>Address:</strong><%=@desk.address%></p>
-    <p><strong>Location:</strong><%=@desk.location%></p>
-    <p><strong>Shared:</strong><%= @desk.shared ? "The space will be shared with others" : "you will have the entire space for yourself"%></p>
-    <p><strong>Price:</strong><%=@desk.price%>$/day</p>
+    <p><i class="fa-solid fa-circle-info"></i> <%=@desk.description%></p>
+    <p><i class="fa-solid fa-map-location-dot"></i> <%=@desk.address%></p>
+    <p><i class="fa-solid fa-map-pin"></i> <%=@desk.location%></p>
+    <p><i class="fa-solid fa-person"></i><i class="fa-solid fa-person"></i><%= @desk.shared ? " The space will be shared with others" : " You will have the entire space for yourself"%></p>
+    <p><i class="fa-solid fa-money-bill"></i> <%=@desk.price%>$/day</p>
 
     <!--beginning of the FORM to create a Booking with the two dates-->
   <div style="background-color:rgb(125, 125, 125); border-radius: 10px; padding: 20px;">
@@ -48,13 +48,15 @@
     <%= simple_form_for :booking, url: bookings_path, method: :post do |f| %>
       <%= f.hidden_field :desk_id, value: @desk.id %>
 
-      <%= f.input :date_range, as: :string, label: "Booking dates", input_html: {
+      <%= f.input :date_range, as: :string, label: "Pick your check-in and check-out day(s):", input_html: {
         class: "form-control",
         data: {controller: "datepicker"},
         required: true
       }%>
 
-      <%= f.button :submit, "Book!", class: "btn btn-primary mt-2" %>
+      <%= f.button :button, class: "btn btn-primary mt-2", type: "submit" do %>
+        Book! <i class="fa-solid fa-thumbs-up me-2"></i>
+      <% end %>
     <% end %>
 
   <!--Alert if the desk is already booked-->
@@ -67,8 +69,9 @@
   </div>
 
     <!--Button to go back-->
-  <%= link_to "Back to search", desks_path(@desk), class: "btn btn-outline-primary mt-3" %>
-
+      <%= link_to desks_path(@desk), class: "btn btn-outline-primary mt-3" do %>
+        <i class="fa-solid fa-rotate-left"></i> Back to search
+      <% end %>
   </div>
 
 
