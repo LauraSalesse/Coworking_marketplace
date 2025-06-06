@@ -1,0 +1,40 @@
+<div class="container mt-5">
+  <h1 class="mb-4">Edit Your Booking</h1>
+
+  <div class="card p-4 mb-4" style="border-radius: 1rem; background: #333;">
+    <h3><%= @desk.title %></h3>
+    <p><strong>Location:</strong> <%= @desk.location %></p>
+    <p><strong>Address:</strong>  <%= @desk.address  %></p>
+    <hr>
+
+    <!-- Display any validation errors -->
+    <% if @booking.errors.any? %>
+      <div class="alert alert-danger">
+        <h5>The following errors prevented saving:</h5>
+        <ul>
+          <% @booking.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <!-- Booking update form -->
+    <%= form_with model: @booking, local: true do |f| %>
+      <div class="mb-3">
+        <%= f.label :start_date, "Check-in Date", class: "form-label" %>
+        <%= f.date_field :start_date, class: "form-control", required: true %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :end_date, "Check-out Date", class: "form-label" %>
+        <%= f.date_field :end_date, class: "form-control", required: true %>
+      </div>
+
+      <div class="d-flex gap-2">
+        <%= f.submit "Update Booking", class: "btn btn-primary" %>
+        <%= link_to "Cancel", booking_path(@booking), class: "btn btn-outline-secondary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

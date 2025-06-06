@@ -4,6 +4,7 @@ import flatpickr from "flatpickr"; // You need to import this to use new flatpic
 export default class extends Controller {
   connect() {
     flatpickr(this.element, {
+      mode: "range",
       altInput: true,
       altFormat: "F j, Y",
       dateFormat: "Y-m-d",
