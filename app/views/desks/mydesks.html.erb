@@ -1,82 +1,69 @@
- <section class="search-section">
+<section class="search-section py-5" style="background:#1a1a1a;">
   <div class="container">
-    <h1>All Your Desks On One View</h1>
-    <form class="d-flex justify-content-center align-items-center gap-2" style="max-width:600px;margin:auto;">
-      <input type="text" class="form-control" placeholder="Search workspaces...">
-      <button type="submit" class="btn btn-primary">Search</button>
-    </form>
+    <h1 style="color:#e9e9e9;">Desks Dashboard</h1>
   </div>
 </section>
-
 
 <!-- Master Calendar Date Picker -->
 <div class="container mb-4">
   <div class="row justify-content-center">
     <div class="col-md-6">
-      <div class="card" style="background: #333; border: none;">
+      <div class="card" style="background: #222; border: none; border-radius: 1.5rem;">
         <div class="card-body text-center">
-          <h5 class="text-white mb-3">Select Month and Year to View Bookings of your Spaces</h5>
+          <h5 class="mb-3" style="color:#e9e9e9;">Calendar Overview</h5>
           <input type="text"
             class="form-control text-center"
             placeholder="Select month and year..."
             data-controller="master-calendar"
             data-default-month="<%= @current_month %>"
             data-default-year="<%= @current_year %>"
-            style="background: #444; border: 1px solid #555; color: white;">
+            style="background: #333; border: 1px solid #444; color: #e9e9e9;">
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<%# Card Section %>
-<section class="featured-section">
+<section class="featured-section py-4">
   <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-4">
-      <h2 style="font-weight:500;letter-spacing:.5px;">Your Spaces</h2>
-      <a href="<%= new_desk_path %>" class="btn btn-search">List a new space</a>
+      <h2 style="font-weight:500;letter-spacing:.5px;color:#e9e9e9;">Your Spaces</h2>
+      <a href="<%= new_desk_path %>" class="btn btn-search btn-action">List a new space</a>
     </div>
 
     <% if @desks.empty? %>
-      <p>You haven't listed any workspaces yet.</p>
+      <p style="color:#e9e9e9;">You haven't listed any workspaces yet.</p>
     <% else %>
       <% @desks.each do |desk| %>
-        <div class="space-card mb-4" style="background: #222; border-radius: 1rem; padding: 1.5rem;">
-
-          <!-- Card Header with Title and Location -->
-          <div class="d-flex justify-content-between align-items-start mb-3">
-            <div>
-              <h5 class="card-title mb-1"><%= desk.title %></h5>
-              <p class="text-light-gray mb-0"><%= desk.location %></p>
-              <small class="text-light-gray">
+        <div class="space-card mb-3" style="background: #222; border-radius: 1rem; padding: 1.5rem; color: #e9e9e9; border: 1px solid #333;">
+          <div class="d-flex flex-wrap justify-content-between align-items-start mb-3">
+            <div style="flex:1 1 300px; min-width:230px; max-width:calc(100% - 265px);">
+              <h5 class="card-title mb-1" style="color:#fff; font-size:1.3rem;"><%= desk.title %></h5>
+              <div style="color:#bbbbbb; font-size:1.09rem;"><%= desk.location %></div>
+              <div style="color:#bbbbbb; font-size:1.04rem;"><%= desk.address %></div>
+              <div style="color:#bbbbbb; font-size:0.98rem; margin-bottom:0.7rem;">
                 $<%= desk.price %> / day · <%= desk.description.truncate(40) %>
-              </small>
+              </div>
             </div>
-
-            <!-- Image (prepare for carousel) -->
-            <div class="space-image" style="width: 120px; height: 80px; border-radius: 8px; overflow: hidden;">
+            <div class="ms-3" style="width: 245px; height: 175px; border-radius: 14px; overflow: hidden; flex-shrink:0;">
               <% if desk.photos.attached? %>
-                <%= image_tag desk.photos.first, style: "width: 100%; height: 100%; object-fit: cover;", alt: desk.title %>
+                <%= image_tag desk.photos.first, style: "width: 100%; height: 100%; object-fit: cover; border-radius: 14px;", alt: desk.title %>
               <% else %>
-                <%= image_tag "https://via.placeholder.com/120x80?text=Workspace", style: "width: 100%; height: 100%; object-fit: cover;", alt: desk.title %>
+                <%= image_tag "https://via.placeholder.com/245x175?text=Workspace", style: "width: 100%; height: 100%; object-fit: cover; border-radius: 14px;", alt: desk.title %>
               <% end %>
-              <!-- TODO: Add carousel navigation arrows here -->
             </div>
           </div>
 
           <!-- Calendar Section -->
           <div class="calendar-section mb-3" data-desk-id="<%= desk.id %>">
-            <!-- Current Month Display -->
             <div class="d-flex justify-content-center align-items-center mb-2" style="height: 32px;">
-              <small class="text-light-gray">
+              <small style="color:#bbbbbb;">
                 📅 <%= Date::MONTHNAMES[@current_month] %> <%= @current_year %>
               </small>
             </div>
-
-            <!-- Calendar Grid -->
             <div class="calendar-grid">
               <!-- Days Header -->
-              <div class="d-flex" style="font-size: 0.8rem; color: #888; margin-bottom: 0.5rem;">
+              <div class="d-flex" style="font-size: 0.85rem; color: #888; margin-bottom: 0.5rem;">
                 <div style="width: 14.28%; text-align: center;">S</div>
                 <div style="width: 14.28%; text-align: center;">M</div>
                 <div style="width: 14.28%; text-align: center;">T</div>
@@ -85,9 +72,6 @@
                 <div style="width: 14.28%; text-align: center;">F</div>
                 <div style="width: 14.28%; text-align: center;">S</div>
               </div>
-
-
-              <!-- Calendar Days (5 weeks max) -->
               <% 5.times do |week| %>
                 <div class="d-flex mb-1">
                   <% 7.times do |day| %>
@@ -97,18 +81,12 @@
                         <% current_date = Date.new(@current_year, @current_month, day_number) %>
                         <% is_booked = desk.date_is_booked?(current_date) %>
                         <% css_class = is_booked ? 'calendar-day booked' : 'calendar-day available' %>
-
-                        <div class="<%= css_class %>">
-                          <%= day_number %>
-                        </div>
+                        <div class="<%= css_class %>"><%= day_number %></div>
                       <% rescue Date::Error %>
-                        <!-- Invalid date (like June 31st) - show empty cell -->
-                        <div class="calendar-day empty">
-                        </div>
+                        <div class="calendar-day empty"></div>
                       <% end %>
                     <% else %>
-                      <div class="calendar-day empty">
-                      </div>
+                      <div class="calendar-day empty"></div>
                     <% end %>
                   <% end %>
                 </div>
@@ -117,10 +95,9 @@
           </div>
 
           <!-- Action Buttons -->
-          <div class="d-flex gap-2">
-            <a href="<%= edit_desk_path(desk) %>" class="btn btn-outline-secondary btn-sm">Modify Desk</a>
+          <div class="d-flex gap-2 mt-2">
+            <a href="<%= edit_desk_path(desk) %>" class="btn btn-search btn-action btn-sm">Edit Desk</a>
           </div>
-
         </div>
       <% end %>
     <% end %>
