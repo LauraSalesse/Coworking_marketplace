@@ -18,8 +18,14 @@ class BookingsController < ApplicationController
       start_date: start_date,
       end_date: end_date
     )
+    conflict = Booking.where(desk: @desk)
+                  .where("start_date <= ? AND end_date >= ?", end_date, start_date)
+                  .exists?
 
-    if @booking.save
+    if conflict
+      flash[:alert] = "This desk is already booked for those dates. Please choose other dates or an other desk"
+      redirect_to desk_path(@desk)
+    elsif @booking.save
       nights = (@booking.end_date - @booking.start_date + 1).to_i
       desk_title = @booking.desk.title
       flash[:notice] = "you just booked the flat #{desk_title} for #{nights} night#{'s' if nights > 1}!"
