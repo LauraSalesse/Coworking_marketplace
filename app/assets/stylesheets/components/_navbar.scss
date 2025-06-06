@@ -25,3 +25,27 @@
   padding-bottom: 0 !important;
   gap: 2px; /* space between avatar and text */
 }
+
+.dropdown-menu {
+  background-color: transparent !important;  /* make menu itself transparent */
+  padding: 0;                                /* no extra padding around items */
+}
+
+/* 2. Style the single dropdown-item as a rounded button */
+.dropdown-menu .dropdown-item {
+  display: block;
+  margin: 0.25rem 0;
+  padding: 0.375rem 1rem;     /* match your search button’s padding style */
+  border: 1px solid #26c6da;  /* teal border */
+  border-radius: 2rem;        /* fully rounded corners */
+  background-color: transparent; /* transparent so menu bg shows through */
+  color: #26c6da;             /* teal text */
+  text-align: center;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+/* 3. Hover state: fill with teal, white text */
+.dropdown-menu .dropdown-item:hover {
+  background-color: #26c6da;
+  color: #fff;
+}
