@@ -1,17 +1,18 @@
 <div class="container mt-5">
-  <h1 class="mb-4">Edit Your Booking</h1>
+  <h1 class="mb-4 text-center fw-bold" style="color: #e9e9e9; letter-spacing: 0.03em;">Edit Your Booking</h1>
 
-  <div class="card p-4 mb-4" style="border-radius: 1rem; background: #333;">
-    <h3><%= @desk.title %></h3>
-    <p><strong>Location:</strong> <%= @desk.location %></p>
-    <p><strong>Address:</strong>  <%= @desk.address  %></p>
-    <hr>
+  <div class="card p-4 mb-5 shadow" style="border-radius: 2rem; background: #222; border: none;">
+    <div class="mb-3">
+      <h3 class="fw-semibold mb-2" style="color: #e9e9e9;"><%= @desk.title %></h3>
+      <p class="mb-1" style="color: #b0b7ba;"><strong>Location:</strong> <%= @desk.location %></p>
+      <p class="mb-0" style="color: #b0b7ba;"><strong>Address:</strong> <%= @desk.address %></p>
+    </div>
+    <hr style="border-color: #31363a;">
 
-    <!-- Display any validation errors -->
     <% if @booking.errors.any? %>
-      <div class="alert alert-danger">
-        <h5>The following errors prevented saving:</h5>
-        <ul>
+      <div class="alert alert-danger rounded-3 shadow-sm">
+        <h5 class="mb-2">There were some problems:</h5>
+        <ul class="mb-0">
           <% @booking.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
           <% end %>
@@ -19,21 +20,20 @@
       </div>
     <% end %>
 
-    <!-- Booking update form -->
     <%= form_with model: @booking, local: true do |f| %>
       <div class="mb-3">
-        <%= f.label :start_date, "Check-in Date", class: "form-label" %>
-        <%= f.date_field :start_date, class: "form-control", required: true %>
+        <%= f.label :start_date, "Check-in Date", class: "form-label", style: "color: #e9e9e9;" %>
+        <%= f.date_field :start_date, class: "form-control", required: true, style: "background: #222; color: #e9e9e9; border-radius: 2rem;" %>
       </div>
 
-      <div class="mb-3">
-        <%= f.label :end_date, "Check-out Date", class: "form-label" %>
-        <%= f.date_field :end_date, class: "form-control", required: true %>
+      <div class="mb-4">
+        <%= f.label :end_date, "Check-out Date", class: "form-label", style: "color: #e9e9e9;" %>
+        <%= f.date_field :end_date, class: "form-control", required: true, style: "background: #222; color: #e9e9e9; border-radius: 2rem;" %>
       </div>
 
-      <div class="d-flex gap-2">
-        <%= f.submit "Update Booking", class: "btn btn-primary" %>
-        <%= link_to "Cancel", booking_path(@booking), class: "btn btn-outline-secondary" %>
+      <div class="d-flex gap-3 justify-content-end">
+        <%= f.submit "Update Booking", class: "btn btn-search" %>
+        <%= link_to "Cancel", booking_path(@booking), class: "btn btn-carmine" %>
       </div>
     <% end %>
   </div>
