@@ -1,68 +1,61 @@
-<section class="search-section">
+<section class="search-section py-5" style="background:#1a1a1a;">
   <div class="container">
-    <h1>My next work spots:</h1>
-    <!-- (You can remove this empty form if you don’t need filtering here) -->
+    <h1 style="color:#e9e9e9;">Upcoming Bookings</h1>
     <%= form_with url: offers_path, method: :get, local: true, class: "d-flex justify-content-center align-items-center gap-2", html: { style: "max-width:600px;margin:auto;" } do %>
     <% end %>
   </div>
 </section>
 
 <% flash.each do |type, message| %>
-  <div class="alert alert-<%= type == 'alert' ? 'danger' : 'success' %> alert-dismissible fade show text-center mx-auto mt-3" style="max-width: 600px; border-radius: 10px;" role="alert">
+  <div class="alert alert-<%= type == 'alert' ? 'danger' : 'success' %> alert-dismissible fade show text-center mx-auto mt-3"
+    style="max-width: 600px; border-radius: 10px; background: #222; color: #e9e9e9; border: 1px solid #2979ff;" role="alert">
     <%= message %>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 <% end %>
 
-<section class="featured-section">
+<section class="featured-section py-4">
   <div class="container">
     <% if @bookings.any? %>
-      <div class="bookings-table-wrapper">
-        <table class="table table-striped table-hover align-middle">
-          <thead class="thead-custom">
-            <tr class="thead-danger">
-              <th>Check-in</th>
-              <th>Check-out</th>
-              <th>Desk</th>
-              <th>Location</th>
-              <th>Address</th>
-              <th>Day(s)</th>
-              <th>Host</th>
-              <th>Contact</th>
-              <th>To pay in cash</th>
-              <th>See the listing</th>
-              <th>Cancel</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @bookings.each do |booking| %>
-              <% desk = booking.desk %>
-              <tr>
-                <td><%= booking.start_date.strftime('%b %d, %Y') %></td>
-                <td><%= booking.end_date.strftime('%b %d, %Y')   %></td>
-                <td><%= desk.title %></td>
-                <td><%= desk.location %></td>
-                <td><%= desk.address %></td>
-                <% duration = (booking.end_date - booking.start_date + 1).to_i %>
-                <td><%= duration %></td>
-                <td><%= desk.user.name %></td>
-                <td><%= desk.user.email %></td>
-                <td><%= desk.price * duration %></td>
-                <td>
-                  <%= link_to "View", booking_path(booking), class: "btn btn-search" %>
-                </td>
-               <td>
-                  <%= link_to "Cancel", booking_path(booking), method: :delete, data: {confirm: "are you sure you want to cancel your booking at #{booking.desk.title} starting #{booking.start_date}?"}, class: "btn btn-danger" %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+      <% @bookings.each do |booking| %>
+        <% desk = booking.desk %>
+        <div class="space-card mb-3" style="background: #222; border-radius: 1rem; padding: 1.5rem; color: #e9e9e9; border: 1px solid #333;">
+          <div class="d-flex flex-wrap justify-content-between align-items-start mb-3">
+            <div style="flex:1 1 300px; min-width:230px; max-width:calc(100% - 265px);">
+              <h5 class="card-title mb-1" style="color:#fff; font-size:1.6rem;"><%= desk.title %></h5>
+              <div style="color:#bbbbbb; font-size:1.18rem;"><%= desk.location %></div>
+              <div style="color:#bbbbbb; font-size:1.06rem;"><%= desk.address %></div>
+              <div style="color:#bbbbbb; font-size:1.08rem; margin-top:1rem;">
+                Check-in: <%= booking.start_date.strftime('%b %d, %Y') %> |
+                Check-out: <%= booking.end_date.strftime('%b %d, %Y') %> |
+                Day(s): <%= (booking.end_date - booking.start_date + 1).to_i %>
+              </div>
+              <div style="color:#bbbbbb; font-size:1.08rem;">
+                Host: <%= desk.user.name %> |
+                Contact: <%= desk.user.email %>
+              </div>
+              <div style="color:#2979ff; font-size:1.18rem; font-weight:600; margin:1.1rem 0;">
+                $<%= desk.price %> / day - Total: $<%= desk.price * (booking.end_date - booking.start_date + 1).to_i %>
+              </div>
+              <div class="d-flex gap-2 mt-2 justify-content-start">
+                <a href="<%= desk_path(desk) %>" class="btn btn-search btn-action">View Details</a>
+                <%= link_to "Cancel", booking_path(booking), method: :delete, data: {confirm: "Are you sure you want to cancel your booking at #{desk.title} starting #{booking.start_date}?"}, class: "btn btn-carmine btn-action" %>
+              </div>
+            </div>
+            <div class="ms-3" style="width: 245px; height: 175px; border-radius: 14px; overflow: hidden; flex-shrink:0;">
+              <% if desk.photos.attached? %>
+                <%= image_tag desk.photos.first, style: "width: 100%; height: 100%; object-fit: cover; border-radius: 14px;", alt: desk.title %>
+              <% else %>
+                <%= image_tag "https://via.placeholder.com/245x175?text=Workspace", style: "width: 100%; height: 100%; object-fit: cover; border-radius: 14px;", alt: desk.title %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
     <% else %>
-      <p>You have no bookings yet.</p>
+      <p style="color:#e9e9e9;">You have no bookings yet.</p>
     <% end %>
 
-    <%= link_to "Back to homepage", desks_path, class: "btn btn-outline-secondary mt-3" %>
+    <%= link_to "Back to homepage", desks_path, class: "btn btn-search btn-action mt-3" %>
   </div>
 </section>

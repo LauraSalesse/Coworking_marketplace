@@ -1,82 +1,84 @@
-
-<body>
-<!--container for everything below the navbar-->
-<div class="container_for_the_desk_show mt-5">
-  <!--the name of the desk-->
-  <div class="desk-header mb-4">
-    <h2><%= @desk.title %> </h2>
-  </div>
-
-
-
-
-
-  <!--the caroussel showing the images of the desk-->
-  <div class="desk-gallery mb-4">
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <% @desk.photos.each_with_index do |photo, index| %>
-          <div class="carousel-item active <%= 'active' if index == 0 %>">
-            <%= image_tag photo, class: "d-block mx-auto", style: "height: 300px; width: auto;", alt: "desk photo" %>
+<body style="background:#181818;">
+  <div class="container_for_the_desk_show py-5" style="max-width: 900px; margin: 0 auto;">
+    <!-- Desk Card -->
+    <div class="space-card" style="background: #222; border-radius: 1.2rem; color: #e9e9e9; border: 1px solid #333; padding: 2.2rem 2rem 2rem 2rem;">
+      <!-- Carousel on top -->
+      <div class="desk-gallery mb-4">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="background:#1a1a1a; border-radius:1rem;">
+          <div class="carousel-inner">
+            <% @desk.photos.each_with_index do |photo, index| %>
+              <div class="carousel-item <%= 'active' if index == 0 %>">
+                <%= image_tag photo, class: "d-block mx-auto", style: "height: 295px; width: 100%; object-fit: cover; border-radius: 1rem;", alt: "desk photo" %>
+              </div>
+            <% end %>
           </div>
-        <%end%>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
       </div>
-      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
+
+      <!-- Desk Details -->
+      <div class="desk-header mb-4">
+        <h2 style="color:#fff; font-size:2rem; font-weight:600;"><%= @desk.title %></h2>
+      </div>
+      <div class="mb-3" style="font-size:1.12rem;">
+        <p style="margin-bottom: 0.45rem;">
+          <i class="fa-solid fa-circle-info"></i>
+          <span style="color:#bbbbbb;"> <%= @desk.description %></span>
+        </p>
+        <p style="margin-bottom: 0.35rem;">
+          <i class="fa-solid fa-map-location-dot"></i>
+          <span style="color:#bbbbbb;"> <%= @desk.address %></span>
+        </p>
+        <p style="margin-bottom: 0.35rem;">
+          <i class="fa-solid fa-map-pin"></i>
+          <span style="color:#bbbbbb;"> <%= @desk.location %></span>
+        </p>
+        <p style="margin-bottom: 0.35rem;">
+          <i class="fa-solid fa-person"></i><i class="fa-solid fa-person"></i>
+          <span style="color:#bbbbbb;"><%= @desk.shared ? " The space will be shared with others" : " You will have the entire space for yourself" %></span>
+        </p>
+        <p style="font-weight:600; color:#e9e9e9;">
+          <i class="fa-solid fa-money-bill"></i>
+          $<%= @desk.price %> <span style="font-weight:400; color:#bbb;">/ day</span>
+        </p>
+      </div>
+
+      <!-- Booking Form Card -->
+      <div class="booking-form-card" style="background:#1a1a1a; border-radius: 1rem; padding: 1.3rem 1.3rem 1.1rem 1.3rem; margin-bottom:1.7rem;">
+        <h5 style="color:#fff; font-size:1.18rem; margin-bottom:1rem;">I want to work there!</h5>
+        <%= simple_form_for :booking, url: bookings_path, method: :post do |f| %>
+          <%= f.hidden_field :desk_id, value: @desk.id %>
+          <%= f.input :date_range, as: :string, label: "Pick your check-in and check-out day(s):",
+                input_html: {
+                  class: "form-control",
+                  data: { controller: "datepicker" },
+                  required: true,
+                  value: (params.dig(:booking, :date_range) || "")
+                } %>
+          <%= f.button :submit, class: "btn btn-search btn-action mt-2" do %>
+            Book! <i class="fa-solid fa-thumbs-up me-2"></i>
+          <% end %>
+        <% end %>
+        <% if flash[:alert] %>
+          <div class="alert alert-danger alert-dismissible fade show mt-3" style="border-radius:0.7rem; border:none; color:#fff; background:#b11226;">
+            <%= flash[:alert] %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <% end %>
+      </div>
     </div>
-  </div>
-
-  <!--more details-->
-  <div class="desk-details">
-    <p><i class="fa-solid fa-circle-info"></i> <%=@desk.description%></p>
-    <p><i class="fa-solid fa-map-location-dot"></i> <%=@desk.address%></p>
-    <p><i class="fa-solid fa-map-pin"></i> <%=@desk.location%></p>
-    <p><i class="fa-solid fa-person"></i><i class="fa-solid fa-person"></i><%= @desk.shared ? " The space will be shared with others" : " You will have the entire space for yourself"%></p>
-    <p><i class="fa-solid fa-money-bill"></i> <%=@desk.price%>$/day</p>
-
-    <!--beginning of the FORM to create a Booking with the two dates-->
-  <div style="background-color:rgb(125, 125, 125); border-radius: 10px; padding: 20px;">
-    <h5>I want to work there!</h5>
-
-  <!-- This must POST to /bookings -->
-    <%= simple_form_for :booking, url: bookings_path, method: :post do |f| %>
-      <%= f.hidden_field :desk_id, value: @desk.id %>
-
-      <%= f.input :date_range, as: :string, label: "Pick your check-in and check-out day(s):",
-        input_html: {
-          class: "form-control",
-          data: { controller: "datepicker" },
-          required: true,
-          value: (params.dig(:booking, :date_range) || "")
-        } %>
-
-      <%= f.button :button, class: "btn btn-primary mt-2", type: "submit" do %>
-        Book! <i class="fa-solid fa-thumbs-up me-2"></i>
-      <% end %>
-    <% end %>
-    <!-- End booking form -->
-
-  <!--Alert if the desk is already booked-->
-  <% if flash[:alert] %>
-    <div class="alert alert-danger alert-dismissible fade show" style="position: absolute; top: 950px; bottom: 100px; right: 300px; height: 60px">
-      <%= flash[:alert] %>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-  <% end %>
-  </div>
-
-    <!--Button to go back-->
-      <%= link_to desks_path(@desk), class: "btn btn-outline-primary mt-3" do %>
+    <!-- Back Button OUTSIDE the card, blue with circular arrow icon -->
+    <div class="mt-4">
+      <%= link_to desks_path, class: "btn btn-search btn-action" do %>
         <i class="fa-solid fa-rotate-left"></i> Back to search
       <% end %>
+    </div>
   </div>
-
-
-</div>
 </body>
