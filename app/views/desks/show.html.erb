@@ -48,14 +48,17 @@
     <%= simple_form_for :booking, url: bookings_path, method: :post do |f| %>
       <%= f.hidden_field :desk_id, value: @desk.id %>
 
-      <%= f.input :date_range, as: :string, label: "Booking dates", input_html: {
-        class: "form-control",
-        data: {controller: "datepicker"},
-        required: true
-      }%>
+      <%= f.input :date_range, as: :string, label: "Booking dates",
+        input_html: {
+          class: "form-control",
+          data: { controller: "datepicker" },
+          required: true,
+          value: (params.dig(:booking, :date_range) || "")
+        } %>
 
       <%= f.button :submit, "Book!", class: "btn btn-primary mt-2" %>
     <% end %>
+    <!-- End booking form -->
 
   <!--Alert if the desk is already booked-->
   <% if flash[:alert] %>

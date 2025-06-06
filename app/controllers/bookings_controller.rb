@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :authenticate_user!, only: %i[create edit update destroy]
+  before_action :authenticate_user!, only: %i[edit update destroy]
 
   def renter_bookings
     @bookings = Booking.where(user: current_user)
@@ -7,6 +7,15 @@ class BookingsController < ApplicationController
 
   def create
     @desk = Desk.find(params[:booking][:desk_id])
+
+    unless user_signed_in?
+     # Pull just the date_range string they submitted in the form:
+      booking_dates = params[:booking][:date_range]
+    # Build a return URL with ?booking[date_range]=... so show can prefill it:
+      return_to = desk_path(@desk, booking: { date_range: booking_dates })
+      store_location_for(:user, return_to)
+      redirect_to new_user_session_path and return
+    end
 
     # transforming the string from the date picker into two variables start_date and end_date
     range = params[:booking][:date_range]
