@@ -1,20 +1,42 @@
 <div class="container mt-5">
-  <h1 class="mb-4">Booking Confirmed</h1>
+  <div class="text-center mb-4">
+    <div style="font-size: 3rem; color: #2979FF; margin-bottom: 0.5rem;">
+      ✅
+    </div>
+    <h1 class="fw-bold" style="color: #e9e9e9; letter-spacing: 0.03em;">Booking Confirmed</h1>
+    <p class="mt-2" style="color: #b0b7ba;">Thank you for your booking!</p>
+  </div>
 
-    <div class="card p-4 mb-4 booking-card-light" style="border-radius: 1rem;">
-    <h3><%= @desk.title %></h3>
-    <p><strong>Location:</strong> <%= @desk.location %></p>
-    <p><strong>Address:</strong>  <%= @desk.address  %></p>
-    <hr>
+  <div class="card p-4 mb-5 shadow" style="border-radius: 2rem; background: #222; border: none; max-width: 500px; margin: 0 auto;">
+    <!-- Desk Info -->
+    <div class="mb-4">
+      <h3 class="fw-semibold mb-1" style="color: #e9e9e9;"><%= @desk.title %></h3>
+      <p class="mb-1" style="color: #b0b7ba;"><strong>Location:</strong> <%= @desk.location %></p>
+      <p class="mb-0" style="color: #b0b7ba;"><strong>Address:</strong> <%= @desk.address %></p>
+    </div>
+    <hr style="border-color: #31363a;">
 
-    <p><strong>Check-in Date:</strong>  <%= @booking.start_date.strftime('%b %d, %Y') %></p>
-    <p><strong>Check-out Date:</strong> <%= @booking.end_date.strftime('%b %d, %Y')   %></p>
-    <% nights = (@booking.end_date - @booking.start_date + 1).to_i %>
-    <p><strong>Number of Days:</strong> <%= nights %> day<%= 's' if nights > 1 %></p>
-    <p><strong>Total Cost:</strong> $<%= @desk.price * nights %></p>
-    <hr>
+    <!-- Summary Box -->
+    <div class="p-3 mb-4" style="background: #252d3a; border-radius: 1.5rem;">
+      <p class="mb-2" style="color: #e9e9e9;">
+        <strong>Check-in:</strong> <%= @booking.start_date.strftime('%b %d, %Y') %>
+      </p>
+      <p class="mb-2" style="color: #e9e9e9;">
+        <strong>Check-out:</strong> <%= @booking.end_date.strftime('%b %d, %Y') %>
+      </p>
+      <% nights = (@booking.end_date - @booking.start_date + 1).to_i %>
+      <p class="mb-2" style="color: #e9e9e9;">
+        <strong>Number of Days:</strong> <%= nights %> day<%= 's' if nights > 1 %>
+      </p>
+      <p class="mb-0" style="color: #fff; font-size: 1.3rem; font-weight: 600;">
+        <span style="color:#b0b7ba;">Total Cost:</span> $<%= @desk.price * nights %>
+      </p>
+    </div>
 
-    <%= link_to "Edit Booking", edit_booking_path(@booking), class: "btn btn-primary me-2" %>
-    <%= link_to "Back to My Bookings", renter_bookings_path, class: "btn btn-outline-secondary" %>
+    <!-- Actions -->
+    <div class="d-flex gap-3 justify-content-center mt-2">
+      <%= link_to "Edit Booking", edit_booking_path(@booking), class: "btn btn-search px-4" %>
+      <%= link_to "Back to My Bookings", renter_bookings_path, class: "btn btn-return px-4" %>
+    </div>
   </div>
 </div>

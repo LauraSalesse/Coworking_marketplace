@@ -2,6 +2,7 @@
   <div class="container_for_the_desk_show py-5" style="max-width: 900px; margin: 0 auto;">
     <!-- Desk Card -->
     <div class="space-card" style="background: #222; border-radius: 1.2rem; color: #e9e9e9; border: 1px solid #333; padding: 2.2rem 2rem 2rem 2rem;">
+
       <!-- Carousel on top -->
       <div class="desk-gallery mb-4">
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="background:#1a1a1a; border-radius:1rem;">
@@ -62,8 +63,8 @@
                   required: true,
                   value: (params.dig(:booking, :date_range) || "")
                 } %>
-          <%= f.button :submit, class: "btn btn-search btn-action mt-2" do %>
-            Book! <i class="fa-solid fa-thumbs-up me-2"></i>
+          <%= f.button :submit, class: "btn btn-search btn-action mt-2 d-flex align-items-center justify-content-center gap-2" do %>
+            <span>Book!</span> <i class="fa-solid fa-thumbs-up"></i>
           <% end %>
         <% end %>
         <% if flash[:alert] %>
@@ -74,10 +75,11 @@
         <% end %>
       </div>
     </div>
-    <!-- Back Button OUTSIDE the card, blue with circular arrow icon -->
-    <div class="mt-4">
-      <%= link_to desks_path, class: "btn btn-search btn-action" do %>
-        <i class="fa-solid fa-rotate-left"></i> Back to search
+    <!-- Back Button OUTSIDE the card, styled blue with btn-return and icon -->
+    <div class="mt-4 text-center">
+      <%= link_to desks_path, class: "btn btn-return btn-action d-inline-flex align-items-center gap-2" do %>
+        <i class="fa-solid fa-rotate-left"></i>
+        <span>Back to search</span>
       <% end %>
     </div>
   </div>

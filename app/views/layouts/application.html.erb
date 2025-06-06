@@ -29,37 +29,34 @@
             <li class="nav-item"><%= link_to "Owner Dashboard", mydesks_path, class: "nav-link" %></li>
 
             <% if user_signed_in? %>
-    <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle d-flex align-items-center user-nav" href="#"
-       id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      <% if current_user.avatar.attached? %>
-        <%= image_tag current_user.avatar.variant(resize_to_fill: [32, 32]),
-                      alt: "Profile",
-                      class: "rounded-circle me-2",
-                      style: "height:32px; width:32px; object-fit:cover;" %>
-      <% else %>
-        <img src="https://ui-avatars.com/api/?name=<%= ERB::Util.url_encode(current_user.name.presence || current_user.email) %>&background=random"
-             alt="Profile"
-             class="rounded-circle me-2"
-             style="height:32px; width:32px; object-fit:cover;" />
-      <% end %>
-      
-      <span><%= current_user.name.presence || current_user.email %></span>
-    </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-      <li>
-        <%= link_to "Logout", destroy_user_session_path,
-                    method: :delete,
-                    class: "dropdown-item" %>
-      </li>
-    </ul>
-  </li>
-<% else %>
-  <li class="nav-item"><%= link_to "Login", new_user_session_path, class: "nav-link" %></li>
-  <li class="nav-item"><%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %></li>
-<% end %>
-
-
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle d-flex align-items-center user-nav" href="#"
+                   id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <% if current_user.avatar.attached? %>
+                    <%= image_tag current_user.avatar.variant(resize_to_fill: [32, 32]),
+                                  alt: "Profile",
+                                  class: "rounded-circle me-2",
+                                  style: "height:32px; width:32px; object-fit:cover;" %>
+                  <% else %>
+                    <img src="https://ui-avatars.com/api/?name=<%= ERB::Util.url_encode(current_user.name.presence || current_user.email) %>&background=random"
+                         alt="Profile"
+                         class="rounded-circle me-2"
+                         style="height:32px; width:32px; object-fit:cover;" />
+                  <% end %>
+                  <span><%= current_user.name.presence || current_user.email %></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                  <li>
+                    <%= link_to "Logout", destroy_user_session_path,
+                                method: :delete,
+                                class: "btn btn-return w-100" %>
+                  </li>
+                </ul>
+              </li>
+            <% else %>
+              <li class="nav-item"><%= link_to "Login", new_user_session_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %></li>
+            <% end %>
           </ul>
         </div>
       </div>

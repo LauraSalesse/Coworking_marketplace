@@ -53,3 +53,23 @@ textarea::placeholder {
   color: #fff;
 }
 
+.btn-return {
+  background: transparent;
+  color: #2979FF;
+  border: 1.5px solid #2979FF;
+  border-radius: 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 0.5rem 1.2rem;
+  margin-left: 0.5rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-return:hover,
+.btn-return:focus {
+  background: #2979FF;
+  color: #fff;
+  border-color: #2979FF;
+  text-decoration: none;
+}
