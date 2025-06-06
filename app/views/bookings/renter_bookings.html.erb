@@ -7,9 +7,10 @@
   </div>
 </section>
 
-<% if flash[:notice] %>
-  <div class="alert alert-success text-center" style="position: absolute; top: 90px; bottom: 1000px; right: 10px; height: 60px">
-    <%= flash[:notice] %>
+<% flash.each do |type, message| %>
+  <div class="alert alert-<%= type == 'alert' ? 'danger' : 'success' %> alert-dismissible fade show text-center mx-auto mt-3" style="max-width: 600px; border-radius: 10px;" role="alert">
+    <%= message %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 <% end %>
 
