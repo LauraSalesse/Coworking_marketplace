@@ -8,19 +8,35 @@ class BookingsController < ApplicationController
   def create
     @desk = Desk.find(params[:booking][:desk_id])
 
-    # Parse the two dates from params. If the user enters invalid dates, parsing returns nil.
-    start_date = (Date.parse(params[:booking][:start_date]) rescue nil)
-    end_date   = (Date.parse(params[:booking][:end_date]) rescue nil)
+    # transforming the string from the date picker into two variables start_date and end_date
+    range = params[:booking][:date_range]
+    start_date_str, end_date_str = range&.split(" to ")
 
+    #creating the instances
+    start_date = Date.parse(start_date_str) rescue nil
+    end_date   = Date.parse(end_date_str) rescue nil
+
+    #some checks in case the user didn't input both a start_date and end_date or end date is before start date
+    if start_date.nil? || end_date.nil?
+     flash[:alert] = "Please select a valid date range."
+      return redirect_to desk_path(@desk)
+    elsif start_date > end_date
+      flash[:alert] = "End date cannot be before start date."
+      return redirect_to desk_path(@desk)
+    end
+
+    # creating the booking
     @booking = Booking.new(
       user: current_user,
       desk: @desk,
       start_date: start_date,
       end_date: end_date
     )
+
+    #checking if there is a conflict with other bookings
     conflict = Booking.where(desk: @desk)
-                  .where("start_date <= ? AND end_date >= ?", end_date, start_date)
-                  .exists?
+              .where("start_date <= ? AND end_date >= ?", end_date, start_date)
+              .exists?
 
     if conflict
       flash[:alert] = "This desk is already booked for those dates. Please choose other dates or an other desk"
@@ -33,7 +49,10 @@ class BookingsController < ApplicationController
     else
       redirect_to desk_path(@desk), alert: "Could not create booking. Please select valid dates."
     end
+
+
   end
+
 
   def destroy
     @booking = Booking.find(params[:id])

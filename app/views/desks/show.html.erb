@@ -40,7 +40,7 @@
     <p><strong>Shared:</strong><%= @desk.shared ? "The space will be shared with others" : "you will have the entire space for yourself"%></p>
     <p><strong>Price:</strong><%=@desk.price%>$/day</p>
 
-    <!--FORM to create a Booking with the two dates-->
+    <!--beginning of the FORM to create a Booking with the two dates-->
   <div style="background-color:rgb(125, 125, 125); border-radius: 10px; padding: 20px;">
     <h5>I want to work there!</h5>
 
@@ -48,26 +48,16 @@
     <%= simple_form_for :booking, url: bookings_path, method: :post do |f| %>
       <%= f.hidden_field :desk_id, value: @desk.id %>
 
-      <%= f.input :start_date,
-        as: :string,
-         label: "Check-in Date",
-          input_html: {
-           class: "form-control",
-          data: { controller: "datepicker" },
-          required: true
-          } %>
-
-      <%= f.input :end_date,
-              as: :string,
-              label: "Check-out Date",
-              input_html: {
-                class: "form-control",
-                data: { controller: "datepicker" },
-                required: true
-              } %>
+      <%= f.input :date_range, as: :string, label: "Booking dates", input_html: {
+        class: "form-control",
+        data: {controller: "datepicker"},
+        required: true
+      }%>
 
       <%= f.button :submit, "Book!", class: "btn btn-primary mt-2" %>
     <% end %>
+
+  <!--Alert if the desk is already booked-->
   <% if flash[:alert] %>
     <div class="alert alert-danger alert-dismissible fade show" style="position: absolute; top: 950px; bottom: 100px; right: 300px; height: 60px">
       <%= flash[:alert] %>
