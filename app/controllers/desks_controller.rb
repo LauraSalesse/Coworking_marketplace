@@ -45,17 +45,25 @@ class DesksController < ApplicationController
   end
 
   def edit
-    @desk = Desk.find(params[:id])
+    @desk = current_user.desks.find(params[:id])
   end
 
+
   def update
-    @desk = Desk.find(params[:id])
+    @desk = current_user.desks.find(params[:id])
+
+    # Update regular attributes (without photos)
     if @desk.update(desk_params)
+      # Handle photos separately - only if new ones were uploaded
+      if params[:desk][:photos].present?
+        @desk.photos.attach(params[:desk][:photos])
+      end
       redirect_to @desk, notice: "Your listing has been updated."
     else
       render :edit, status: :unprocessable_entity
     end
   end
+
 
   def destroy
     @desk = Desk.find(params[:id])
@@ -86,7 +94,7 @@ class DesksController < ApplicationController
       :location,
       :shared,
       :price,
-      photos: []
+      # photos are deleted here
     )
   end
 end

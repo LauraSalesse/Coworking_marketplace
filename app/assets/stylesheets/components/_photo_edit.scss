@@ -1,0 +1,33 @@
+// Styles for photo editing in desk forms
+.photo-edit-card {
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-img-top {
+    transition: transform 0.2s ease;
+  }
+
+  &:hover .card-img-top {
+    transform: scale(1.05);
+  }
+}
+
+.photo-section {
+  .form-label {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 0.75rem;
+  }
+
+  .btn-danger {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+}
