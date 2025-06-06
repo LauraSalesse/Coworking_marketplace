@@ -11,46 +11,56 @@
 @import url("https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css");
 
 .mapboxgl-popup-content {
-  color: #ffffff;        // very dark gray/near‐black text
-  font-weight: 300;      // slightly bolder
-  font-size: 0.95rem;    // if you want it a bit bigger
-}
-
-/* If you want the heading specifically even darker/larger: */
-.mapboxgl-popup-content h5 {
-  color: #ffffff;        // pure black for the title
-  font-weight: 200;
-  margin-bottom: 0.5rem;
-}
-
-/* And ensure links/buttons inside the popup are also visible */
-.mapboxgl-popup-content a.btn {
-  color: #fff;           // white text on the button
-  background-color: #333;
-  border-color: #222;
-}
-
-/* Optional: make the popup background a touch more opaque */
-.mapboxgl-popup-content {
   background-color: #222;
+  color: #e9e9e9;
+  font-weight: 400;
+  font-size: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.45);
+  padding: 1.2rem 1rem 1rem 1.2rem;
 }
 
+.mapboxgl-popup-content h5 {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+/* Default map link/button inside popup */
+.mapboxgl-popup-content a.btn,
 .mapboxgl-popup-content a.btn-search {
-  background: #616161;
-  color: #ffffff;
+  background: #2979ff;
+  color: #fff;
   border-radius: 1rem;
   border: none;
-  padding: 0.4rem 1rem;
+  padding: 0.45rem 1.3rem;
+  font-size: 1rem;
   font-weight: 500;
-  transition: background 0.2s;
+  margin-top: 0.3rem;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+  text-align: center;
+  display: inline-block;
 }
 
-.mapboxgl-popup-content a.btn.btn-sm.btn-primary:hover {
-  color: #ffffff;
-  background-color: #e6751a;
-  transition: background 0.2s;
+.mapboxgl-popup-content a.btn:hover,
+.mapboxgl-popup-content a.btn-search:hover {
+  background: #1c54b2;
+  color: #fff;
 }
 
+/* Optional: style popup close button (X) */
+.mapboxgl-popup-close-button {
+  color: #fff !important;
+  opacity: 0.7;
+  font-size: 1.3rem;
+  transition: opacity 0.15s;
+}
+.mapboxgl-popup-close-button:hover {
+  opacity: 1;
+}
 
 @import "components/bookings";
 @import "components/photo_edit";
