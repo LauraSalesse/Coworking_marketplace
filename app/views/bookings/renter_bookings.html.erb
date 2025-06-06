@@ -38,7 +38,7 @@
                 $<%= desk.price %> / day - Total: $<%= desk.price * (booking.end_date - booking.start_date + 1).to_i %>
               </div>
               <div class="d-flex gap-2 mt-2 justify-content-start">
-                <a href="<%= desk_path(desk) %>" class="btn btn-search btn-action">View Details</a>
+                <a href="<%= edit_booking_path(booking) %>" class="btn btn-search btn-action">View Details</a>
                 <%= link_to "Cancel", booking_path(booking), method: :delete, data: {confirm: "Are you sure you want to cancel your booking at #{desk.title} starting #{booking.start_date}?"}, class: "btn btn-carmine btn-action" %>
               </div>
             </div>
