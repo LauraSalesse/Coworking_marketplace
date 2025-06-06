@@ -1,19 +1,37 @@
-<h2>Sign up</h2>
+<div class="container py-5" style="max-width: 480px;">
+  <h2 class="mb-4 text-center">Sign up</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true }) do |f| %>
-  <%= f.error_notification %>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true, class: "needs-validation" }) do |f| %>
+    <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :name, required: false, autofocus: true, placeholder: "Your Name" %>
-    <%= f.input :email, required: true, input_html: { autocomplete: "email" } %>
-    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation, required: true, input_html: { autocomplete: "new-password" } %>
-    <%= f.input :avatar, as: :file, required: false, label: "Profile photo" %>
-  </div>
+    <div class="mb-3">
+      <%= f.input :name, required: false, autofocus: true, input_html: { class: "form-control" }, label_html: { class: "form-label" } %>
+    </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
+    <div class="mb-3">
+      <%= f.input :email, required: true, input_html: { class: "form-control", autocomplete: "email" }, label_html: { class: "form-label" } %>
+    </div>
 
-<%= render "devise/shared/links" %>
+    <div class="mb-3">
+      <%= f.input :password,
+          required: true,
+          hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+          input_html: { class: "form-control", autocomplete: "new-password" },
+          label_html: { class: "form-label" },
+          hint_html: { class: "form-text text-secondary" }
+      %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.input :password_confirmation, required: true, input_html: { class: "form-control", autocomplete: "new-password" }, label_html: { class: "form-label" } %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.input :avatar, as: :file, required: false, label: "Profile photo", input_html: { class: "form-control" }, label_html: { class: "form-label" } %>
+    </div>
+
+    <div class="d-grid">
+      <%= f.button :submit, "Sign up", class: "btn btn-search btn-block" %>
+    </div>
+  <% end %>
+</div>

@@ -11,15 +11,15 @@
 @import url("https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css");
 
 .mapboxgl-popup-content {
-  color: #111111;        // very dark gray/near‐black text
-  font-weight: 600;      // slightly bolder
+  color: #ffffff;        // very dark gray/near‐black text
+  font-weight: 300;      // slightly bolder
   font-size: 0.95rem;    // if you want it a bit bigger
 }
 
 /* If you want the heading specifically even darker/larger: */
 .mapboxgl-popup-content h5 {
-  color: #000000;        // pure black for the title
-  font-weight: 700;
+  color: #ffffff;        // pure black for the title
+  font-weight: 200;
   margin-bottom: 0.5rem;
 }
 
@@ -32,11 +32,21 @@
 
 /* Optional: make the popup background a touch more opaque */
 .mapboxgl-popup-content {
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: #222;
+}
+
+.mapboxgl-popup-content a.btn-search {
+  background: #616161;
+  color: #ffffff;
+  border-radius: 1rem;
+  border: none;
+  padding: 0.4rem 1rem;
+  font-weight: 500;
+  transition: background 0.2s;
 }
 
 .mapboxgl-popup-content a.btn.btn-sm.btn-primary:hover {
-  background-color: #007bff;
-  border-color:     #0056b8;
-  color:            #fff;
+  color: #ffffff;
+  background-color: #e6751a;
+  transition: background 0.2s;
 }
