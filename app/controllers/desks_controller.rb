@@ -94,7 +94,7 @@ class DesksController < ApplicationController
       :location,
       :shared,
       :price,
-      # photos are deleted here
+      photos: [] # do not delete this line !
     )
   end
 end
